@@ -4,23 +4,22 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Menu | Five Slash</title>
-  <meta name="description" content="منيو Five Slash - اطلب بسهولة عبر الجوال" />
 
   <style>
     :root{
-      /* Five Slash Dark/Red Luxury Theme */
-      --bg:#070709;
-      --panel:#0b0b10;
-      --card:#101018;
+      /* Gold & Black Luxury */
+      --bg:#050506;
+      --panel:#0b0b0e;
+      --card:#111114;
 
-      --border:rgba(255,255,255,.10);
-      --text:#f5f6fb;
-      --muted:rgba(245,246,251,.72);
+      --border:rgba(255,215,128,.18);
+      --text:#f5f3ea;
+      --muted:rgba(245,243,234,.65);
 
-      --brand:#ff3d2e;   /* أحمر */
-      --brand2:#ff6a3d;  /* برتقالي-أحمر */
+      --gold:#d9b15f;
+      --gold2:#f1d28a;
 
-      --shadow: 0 14px 38px rgba(0,0,0,.55);
+      --shadow: 0 14px 40px rgba(0,0,0,.7);
       --radius:16px;
     }
 
@@ -29,557 +28,314 @@
       margin:0;
       font-family: system-ui, -apple-system, "Segoe UI", Tahoma, Arial, sans-serif;
       background:
-        radial-gradient(900px 520px at 18% 12%, rgba(255,61,46,.22), transparent 60%),
-        radial-gradient(900px 520px at 82% 85%, rgba(255,106,61,.14), transparent 58%),
-        radial-gradient(700px 420px at 55% 28%, rgba(255,255,255,.06), transparent 55%),
-        linear-gradient(180deg, #0f1016, #060607);
+        radial-gradient(900px 520px at 20% 15%, rgba(217,177,95,.18), transparent 60%),
+        radial-gradient(900px 520px at 85% 85%, rgba(241,210,138,.12), transparent 60%),
+        linear-gradient(180deg, #0b0b0e, #050506);
       color:var(--text);
     }
-    a{color:inherit;text-decoration:none}
+    a{text-decoration:none;color:inherit}
 
     .wrap{max-width:1100px;margin:0 auto;padding:18px}
 
+    /* ===== Topbar ===== */
     .topbar{
-      position:sticky; top:0; z-index:10;
+      position:sticky;top:0;z-index:10;
       backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      background: rgba(6,6,7,.65);
+      background: rgba(5,5,6,.75);
       border-bottom:1px solid var(--border);
     }
-    .topbar .wrap{display:flex; gap:12px; align-items:center; justify-content:space-between}
+    .topbar .wrap{display:flex;gap:12px;align-items:center;justify-content:space-between}
 
-    .brand{
-      display:flex; align-items:center; gap:10px; min-width: 220px;
-    }
+    .brand{display:flex;gap:10px;align-items:center}
     .logo{
-      width:40px;height:40px;border-radius:12px;
-      background: linear-gradient(135deg, rgba(255,61,46,.95), rgba(255,106,61,.65));
+      width:42px;height:42px;border-radius:12px;
+      background: linear-gradient(135deg, var(--gold), var(--gold2));
+      display:grid;place-items:center;
+      font-weight:900;color:#000;
       box-shadow: var(--shadow);
-      border: 1px solid rgba(255,255,255,.10);
-      display:grid; place-items:center;
-      font-weight:900;
-      position:relative;
-      overflow:hidden;
     }
-    .logo:before{
-      content:"";
-      position:absolute;
-      inset:-40%;
-      background: linear-gradient(120deg, transparent 40%, rgba(255,255,255,.18) 50%, transparent 60%);
-      transform: translateX(-60%) rotate(12deg);
-      animation: shine 4.5s ease-in-out infinite;
-      pointer-events:none;
-    }
-    @keyframes shine{
-      0%{ transform: translateX(-70%) rotate(12deg); opacity:0; }
-      20%{ opacity:.55; }
-      50%{ transform: translateX(50%) rotate(12deg); opacity:.45; }
-      80%{ opacity:0; }
-      100%{ transform: translateX(70%) rotate(12deg); opacity:0; }
-    }
+    .brand h1{margin:0;font-size:16px}
+    .brand p{margin:2px 0 0;font-size:12px;color:var(--muted)}
 
-    .brand h1{margin:0;font-size:16px;line-height:1.2}
-    .brand p{margin:2px 0 0; font-size:12px; color:var(--muted)}
-
-    .actions{display:flex; gap:10px; align-items:center}
+    .search{
+      flex:1;min-width:260px;
+      display:flex;gap:10px;align-items:center;
+      border:1px solid var(--border);
+      background: rgba(255,255,255,.04);
+      border-radius:14px;padding:10px 12px;
+    }
+    .search input{
+      width:100%;background:transparent;border:0;outline:0;
+      color:var(--text)
+    }
 
     .btn{
       border:1px solid var(--border);
       background: rgba(255,255,255,.04);
-      color: var(--text);
-      padding:10px 12px;
-      border-radius: 12px;
+      color:var(--text);
+      padding:10px 14px;
+      border-radius:12px;
       cursor:pointer;
-      transition:.15s ease;
-      display:flex; gap:8px; align-items:center;
+      transition:.15s;
     }
     .btn:hover{
+      border-color: var(--gold);
       transform: translateY(-1px);
-      border-color: rgba(255,61,46,.40);
-      box-shadow: 0 10px 20px rgba(0,0,0,.35);
     }
 
-    .search{
-      flex:1;
-      min-width: 260px;
-      display:flex; align-items:center; gap:10px;
-      border:1px solid var(--border);
-      background: rgba(255,255,255,.04);
-      border-radius: 14px;
-      padding:10px 12px;
-    }
-    .search input{
-      width:100%;
-      background: transparent;
-      border:0; outline:0;
-      color: var(--text);
-      font-size:14px;
-    }
-    .search input::placeholder{color: rgba(245,246,251,.55)}
-
-    .hero{ padding:18px 0 6px; }
+    /* ===== Hero ===== */
     .hero-card{
-      border:1px solid var(--border);
-      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
-      border-radius: var(--radius);
-      padding:16px;
-      box-shadow: var(--shadow);
-      display:flex; flex-wrap:wrap; gap:12px; align-items:center; justify-content:space-between;
-    }
-    .hero-title{margin:0;font-size:18px}
-    .hero-sub{margin:6px 0 0;color:var(--muted);font-size:13px}
-
-    .chips{display:flex; flex-wrap:wrap; gap:8px}
-    .chip{
+      margin-top:18px;
       border:1px solid var(--border);
       background: rgba(255,255,255,.03);
-      padding:8px 10px;
-      border-radius: 999px;
-      font-size:12px;
-      color: var(--muted);
+      border-radius:var(--radius);
+      padding:16px;
+      display:flex;flex-wrap:wrap;gap:12px;justify-content:space-between;
+      box-shadow: var(--shadow);
+    }
+
+    .chips{display:flex;gap:8px;flex-wrap:wrap}
+    .chip{
+      padding:8px 12px;
+      border-radius:999px;
+      border:1px solid var(--border);
+      background: rgba(255,255,255,.03);
+      color:var(--muted);
       cursor:pointer;
-      transition:.15s ease;
-      user-select:none;
+      font-size:12px;
     }
     .chip.active{
-      border-color: rgba(255,61,46,.45);
-      color: var(--text);
-      background: rgba(255,61,46,.12);
+      background: rgba(217,177,95,.15);
+      border-color: var(--gold);
+      color:var(--text);
     }
 
-    .grid{
-      display:grid;
-      grid-template-columns: repeat(12, 1fr);
-      gap:12px;
-      padding:14px 0 40px;
-    }
+    /* ===== Grid ===== */
+    .grid{display:grid;grid-template-columns:repeat(12,1fr);gap:12px;margin-top:16px}
+    .section{grid-column:1/-1}
+    .section h2{margin:18px 0 10px;font-size:15px}
 
-    .section{ grid-column: 1 / -1; margin-top: 6px; }
-    .section h2{
-      margin:18px 0 10px;
-      font-size:15px;
-      letter-spacing:.2px;
-      display:flex; align-items:center; gap:10px;
-    }
-    .section h2 span{
-      color: var(--muted);
-      font-weight: 500;
-      font-size: 12px;
-    }
-
-    .cards{
-      display:grid;
-      grid-template-columns: repeat(12, 1fr);
-      gap:12px;
-    }
+    .cards{display:grid;grid-template-columns:repeat(12,1fr);gap:12px}
 
     .card{
-      grid-column: span 4;
+      grid-column:span 4;
       border:1px solid var(--border);
       background: rgba(255,255,255,.03);
-      border-radius: var(--radius);
+      border-radius:var(--radius);
       overflow:hidden;
-      box-shadow: 0 6px 20px rgba(0,0,0,.28);
-      transition:.15s ease;
       cursor:pointer;
-      position:relative;
+      transition:.15s;
     }
     .card:hover{
       transform: translateY(-2px);
-      border-color: rgba(255,61,46,.35);
+      border-color: var(--gold);
     }
 
+    /* ===== Image Thumb ===== */
     .thumb{
-      height:120px;
-      background:
-        radial-gradient(600px 220px at 12% 15%, rgba(255,61,46,.24), transparent 58%),
-        radial-gradient(520px 220px at 88% 0%, rgba(255,106,61,.18), transparent 62%),
-        rgba(255,255,255,.02);
-      border-bottom:1px solid var(--border);
-      display:flex; align-items:flex-end; padding:12px;
+      height:150px;
+      background-size:cover;
+      background-position:center;
+      position:relative;
+      display:flex;align-items:flex-end;
+      padding:12px;
     }
-
+    .thumb::after{
+      content:"";
+      position:absolute;inset:0;
+      background: linear-gradient(to top, rgba(0,0,0,.75), transparent);
+    }
     .tag{
+      position:relative;
       font-size:11px;
       padding:6px 10px;
-      border-radius: 999px;
-      border:1px solid rgba(255,255,255,.12);
-      background: rgba(0,0,0,.28);
-      color: rgba(245,246,251,.82);
+      border-radius:999px;
+      background: rgba(0,0,0,.55);
+      border:1px solid var(--border);
+      color:var(--text);
     }
 
     .content{padding:12px}
     .title{margin:0;font-size:14px}
-    .desc{
-      margin:7px 0 0;
-      font-size:12px;
-      color: var(--muted);
-      line-height:1.6;
-      min-height: 38px
-    }
-
+    .desc{margin:6px 0;font-size:12px;color:var(--muted);min-height:36px}
     .meta{
-      margin-top: 10px;
-      display:flex; align-items:center; justify-content:space-between;
-      gap:10px;
-      border-top:1px dashed rgba(255,255,255,.10);
+      display:flex;justify-content:space-between;align-items:center;
+      border-top:1px dashed var(--border);
       padding-top:10px;
     }
-    .price{font-weight:900; color: var(--brand)}
+    .price{font-weight:900;color:var(--gold)}
     .badge{
       font-size:11px;
-      color: rgba(245,246,251,.9);
-      border:1px solid rgba(255,61,46,.32);
-      background: rgba(255,61,46,.12);
       padding:6px 10px;
-      border-radius: 999px;
-      white-space:nowrap;
+      border-radius:999px;
+      border:1px solid var(--gold);
+      background: rgba(217,177,95,.15);
+      color:var(--text);
     }
 
-    /* Modal */
+    /* ===== Modal ===== */
     .modal-backdrop{
-      position:fixed; inset:0;
-      background: rgba(0,0,0,.60);
-      display:none;
-      align-items:center; justify-content:center;
-      padding: 18px;
-      z-index: 50;
+      position:fixed;inset:0;
+      background: rgba(0,0,0,.7);
+      display:none;align-items:center;justify-content:center;
+      z-index:50;padding:16px;
     }
     .modal{
-      width:min(720px, 100%);
+      width:min(720px,100%);
+      background: var(--panel);
+      border-radius:18px;
       border:1px solid var(--border);
-      background: rgba(12,12,16,.96);
-      border-radius: 18px;
       box-shadow: var(--shadow);
       overflow:hidden;
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
     }
     .modal-top{
-      display:flex; align-items:center; justify-content:space-between;
-      gap:12px;
       padding:14px;
+      display:flex;justify-content:space-between;align-items:center;
       border-bottom:1px solid var(--border);
-      background:
-        radial-gradient(500px 220px at 10% 50%, rgba(255,61,46,.20), transparent 60%),
-        linear-gradient(180deg, rgba(255,255,255,.05), transparent);
     }
-    .modal-top h3{margin:0; font-size:15px}
-    .close{
-      border:1px solid var(--border);
-      background: rgba(255,255,255,.04);
-      color: var(--text);
-      border-radius: 12px;
-      padding:8px 10px;
-      cursor:pointer;
-      transition:.15s ease;
-    }
-    .close:hover{border-color: rgba(255,61,46,.35); transform: translateY(-1px)}
-    .modal-body{padding:14px; display:grid; gap:12px}
-    .modal-hero{
-      border:1px solid var(--border);
-      background: rgba(255,255,255,.03);
-      border-radius: 16px;
-      padding:12px;
-    }
-    .modal-desc{margin:8px 0 0; color: var(--muted); font-size:13px; line-height:1.7}
-    .modal-row{
-      display:flex; flex-wrap:wrap; gap:10px; align-items:center; justify-content:space-between;
-      border-top:1px dashed rgba(255,255,255,.10);
-      padding-top:12px;
-    }
-    .small{font-size:12px; color: var(--muted)}
-    .footer-note{
-      margin-top: 10px;
-      border:1px solid var(--border);
-      background: rgba(255,255,255,.03);
-      border-radius: 16px;
-      padding:12px;
-      color: var(--muted);
-      font-size:12px;
-      line-height:1.7;
+    .modal-body{padding:14px}
+    .modal-body img{
+      width:100%;height:220px;object-fit:cover;
+      border-radius:14px;margin-bottom:10px;
     }
 
-    @media (max-width: 900px){
-      .card{grid-column: span 6;}
-      .brand{min-width:auto}
-      .search{min-width: 180px}
-    }
-    @media (max-width: 560px){
-      .topbar .wrap{flex-wrap:wrap}
-      .search{flex: 1 1 100%}
-      .card{grid-column: span 12;}
-      .thumb{height:110px}
-    }
+    @media(max-width:900px){.card{grid-column:span 6}}
+    @media(max-width:560px){.card{grid-column:span 12}.search{min-width:100%}}
   </style>
 </head>
 
 <body>
-  <header class="topbar">
-    <div class="wrap">
-      <div class="brand">
-        <div class="logo" title="Five Slash">FS</div>
-        <div>
-          <h1>Five Slash</h1>
-          <p>Menu • Scan &amp; Order</p>
-        </div>
-      </div>
 
-      <div class="search" title="ابحث عن اسم المنتج">
-        <span aria-hidden="true">⌕</span>
-        <input id="q" type="search" placeholder="ابحث: لاتيه، موهيتو، كروسان..." autocomplete="off" />
-      </div>
-
-      <div class="actions">
-        <button class="btn" id="btnAll" type="button" title="عرض كل الأقسام">كل الأقسام</button>
-        <button class="btn" id="btnCall" type="button" title="تواصل واتساب">واتساب</button>
+<header class="topbar">
+  <div class="wrap">
+    <div class="brand">
+      <div class="logo">FS</div>
+      <div>
+        <h1>Five Slash</h1>
+        <p>Menu • Scan & Order</p>
       </div>
     </div>
-  </header>
 
-  <main class="wrap">
-    <section class="hero">
-      <div class="hero-card">
-        <div>
-          <h2 class="hero-title">منيو الكافيه</h2>
-          <p class="hero-sub">اختر القسم، ثم اضغط على أي منتج لعرض التفاصيل.</p>
-        </div>
-
-        <div class="chips" id="chips"></div>
-      </div>
-    </section>
-
-    <div id="menuRoot" class="grid"></div>
-
-    <div class="footer-note">
-      ملاحظة: يمكنك تعديل الأصناف والأسعار بسهولة من داخل الكود في قسم <b>MENU_DATA</b>.
-      إذا تريد ربط الطلب عبر واتساب أو رقم الطاولة، أخبرني وسأجهزه لك.
+    <div class="search">
+      🔍
+      <input id="q" placeholder="ابحث عن منتج..." />
     </div>
-  </main>
 
-  <!-- Modal -->
-  <div class="modal-backdrop" id="modalBackdrop" role="dialog" aria-modal="true" aria-hidden="true">
-    <div class="modal">
-      <div class="modal-top">
-        <h3 id="modalTitle">تفاصيل المنتج</h3>
-        <button class="close" id="modalClose" type="button">إغلاق</button>
-      </div>
-      <div class="modal-body">
-        <div class="modal-hero">
-          <div class="small" id="modalCategory"></div>
-          <div class="modal-desc" id="modalDesc"></div>
-          <div class="modal-row">
-            <div>
-              <div class="small">السعر</div>
-              <div class="price" id="modalPrice"></div>
-            </div>
-            <div class="badge" id="modalBadge"></div>
-          </div>
-        </div>
+    <button class="btn" id="btnAll">كل الأقسام</button>
+  </div>
+</header>
 
-        <div class="footer-note" id="modalNote">
-          لإضافة صور للمنتجات أو تفعيل الطلب المباشر، يمكن تحويل كل منتج إلى بطاقة فيها صورة ورابط واتساب.
-        </div>
-      </div>
+<main class="wrap">
+  <div class="hero-card">
+    <div>
+      <h2>منيو الكافيه</h2>
+      <p class="desc">اضغط على أي منتج لعرض التفاصيل</p>
     </div>
+    <div class="chips" id="chips"></div>
   </div>
 
+  <div id="menuRoot" class="grid"></div>
+</main>
+
+<!-- Modal -->
+<div class="modal-backdrop" id="modal">
+  <div class="modal">
+    <div class="modal-top">
+      <h3 id="mTitle"></h3>
+      <button class="btn" onclick="closeModal()">إغلاق</button>
+    </div>
+    <div class="modal-body">
+      <img id="mImg">
+      <p id="mDesc"></p>
+      <div class="price" id="mPrice"></div>
+    </div>
+  </div>
+</div>
+
 <script>
-  // =========================
-  //  عدّل المنيو من هنا فقط
-  // =========================
-  const MENU_DATA = [
-    {
-      id: "hot-coffee",
-      name: "قهوة ساخنة",
-      items: [
-        { name: "إسبريسو", price: 12, desc: "شوت إسبريسو مركز بنكهة غنية.", tag: "Hot", badge: "بدون سكر" },
-        { name: "أمريكانو", price: 14, desc: "إسبريسو مع ماء ساخن بطعم متوازن.", tag: "Hot", badge: "خفيف" },
-        { name: "لاتيه", price: 18, desc: "إسبريسو + حليب مبخر + رغوة ناعمة.", tag: "Hot", badge: "الأكثر طلبًا" },
-        { name: "كابتشينو", price: 18, desc: "قوام رغوي كثيف مع نكهة قهوة واضحة.", tag: "Hot", badge: "كلاسيك" },
-      ]
-    },
-    {
-      id: "iced",
-      name: "مشروبات باردة",
-      items: [
-        { name: "آيس لاتيه", price: 20, desc: "لاتيه بارد مع ثلج وحلاوة اختيارية.", tag: "Cold", badge: "منعش" },
-        { name: "آيس سبانيش لاتيه", price: 22, desc: "حليب مكثف + إسبريسو + ثلج.", tag: "Cold", badge: "حلو" },
-        { name: "كولد برو", price: 21, desc: "قهوة منقوعة باردة بطعم ناعم.", tag: "Cold", badge: "مميز" },
-        { name: "موهيتو ليمون", price: 19, desc: "ليمون + نعناع + فوار منعش.", tag: "Cold", badge: "بدون كافيين" },
-      ]
-    },
-    {
-      id: "dessert",
-      name: "حلويات",
-      items: [
-        { name: "تشيز كيك", price: 24, desc: "تشيز كيك كريمي مع صوص حسب التوفر.", tag: "Sweet", badge: "جديد" },
-        { name: "براوني", price: 18, desc: "براوني شوكولاتة غني وقدّم مع إضافات اختيارية.", tag: "Sweet", badge: "شوكولاتة" },
-        { name: "كرواسون", price: 14, desc: "كرواسون طازج (سادة/شوكولاتة/جبن).", tag: "Bakery", badge: "طازج" },
-        { name: "كوكيز", price: 10, desc: "كوكيز طرية بنكهات متعددة.", tag: "Sweet", badge: "خفيف" },
-      ]
-    }
-  ];
-
-  // إعدادات عامة
-  const SAR = (n) => `${Number(n).toFixed(0)} ر.س`;
-
-  const q = document.getElementById('q');
-  const root = document.getElementById('menuRoot');
-  const chips = document.getElementById('chips');
-
-  const modalBackdrop = document.getElementById('modalBackdrop');
-  const modalClose = document.getElementById('modalClose');
-  const modalTitle = document.getElementById('modalTitle');
-  const modalCategory = document.getElementById('modalCategory');
-  const modalDesc = document.getElementById('modalDesc');
-  const modalPrice = document.getElementById('modalPrice');
-  const modalBadge = document.getElementById('modalBadge');
-
-  let activeSectionId = "all";
-
-  function buildChips() {
-    const all = [{id:"all", name:"الكل"}].concat(MENU_DATA.map(s => ({id:s.id, name:s.name})));
-    chips.innerHTML = "";
-    all.forEach(sec => {
-      const el = document.createElement('div');
-      el.className = 'chip' + (sec.id === activeSectionId ? ' active' : '');
-      el.textContent = sec.name;
-      el.onclick = () => { activeSectionId = sec.id; sync(); };
-      chips.appendChild(el);
-    });
+const MENU_DATA = [
+  {
+    id:"coffee",
+    name:"قهوة ساخنة",
+    items:[
+      {name:"لاتيه",price:18,desc:"إسبريسو مع حليب مبخر",tag:"Hot",badge:"الأكثر طلبًا",img:"images/latte.jpg"},
+      {name:"كابتشينو",price:18,desc:"رغوة كثيفة ونكهة قوية",tag:"Hot",badge:"كلاسيك",img:"images/cappuccino.jpg"}
+    ]
+  },
+  {
+    id:"cold",
+    name:"مشروبات باردة",
+    items:[
+      {name:"آيس لاتيه",price:20,desc:"لاتيه بارد منعش",tag:"Cold",badge:"منعش",img:"images/iced-latte.jpg"},
+      {name:"موهيتو ليمون",price:19,desc:"ليمون ونعناع",tag:"Cold",badge:"بدون كافيين",img:"images/mojito.jpg"}
+    ]
   }
+];
 
-  function openModal(item, sectionName){
-    modalTitle.textContent = item.name;
-    modalCategory.textContent = `القسم: ${sectionName}`;
-    modalDesc.textContent = item.desc || "—";
-    modalPrice.textContent = SAR(item.price);
-    modalBadge.textContent = item.badge || "تفاصيل";
-    modalBackdrop.style.display = "flex";
-    modalBackdrop.setAttribute("aria-hidden", "false");
-  }
-  function closeModal(){
-    modalBackdrop.style.display = "none";
-    modalBackdrop.setAttribute("aria-hidden", "true");
-  }
+const root=document.getElementById("menuRoot");
+const chips=document.getElementById("chips");
+const q=document.getElementById("q");
+let active="all";
 
-  modalClose.addEventListener('click', closeModal);
-  modalBackdrop.addEventListener('click', (e) => { if(e.target === modalBackdrop) closeModal(); });
-  document.addEventListener('keydown', (e) => { if(e.key === "Escape") closeModal(); });
-
-  function matchesQuery(item, query){
-    if(!query) return true;
-    const t = (item.name + " " + (item.desc||"") + " " + (item.badge||"") + " " + (item.tag||"")).toLowerCase();
-    return t.includes(query.toLowerCase());
-  }
-
-  function render() {
-    const query = q.value.trim();
-    root.innerHTML = "";
-
-    MENU_DATA.forEach(section => {
-      if(activeSectionId !== "all" && activeSectionId !== section.id) return;
-
-      const filtered = section.items.filter(it => matchesQuery(it, query));
-      if(filtered.length === 0) return;
-
-      const sec = document.createElement('div');
-      sec.className = 'section';
-
-      const h2 = document.createElement('h2');
-      h2.innerHTML = `${section.name} <span>(${filtered.length})</span>`;
-      sec.appendChild(h2);
-
-      const cards = document.createElement('div');
-      cards.className = 'cards';
-
-      filtered.forEach(item => {
-        const c = document.createElement('div');
-        c.className = 'card';
-        c.onclick = () => openModal(item, section.name);
-
-        const t = document.createElement('div');
-        t.className = 'thumb';
-        const tag = document.createElement('div');
-        tag.className = 'tag';
-        tag.textContent = item.tag || "Menu";
-        t.appendChild(tag);
-
-        const content = document.createElement('div');
-        content.className = 'content';
-
-        const title = document.createElement('h3');
-        title.className = 'title';
-        title.textContent = item.name;
-
-        const desc = document.createElement('p');
-        desc.className = 'desc';
-        desc.textContent = item.desc || "—";
-
-        const meta = document.createElement('div');
-        meta.className = 'meta';
-
-        const price = document.createElement('div');
-        price.className = 'price';
-        price.textContent = SAR(item.price);
-
-        const badge = document.createElement('div');
-        badge.className = 'badge';
-        badge.textContent = item.badge || "تفاصيل";
-
-        meta.appendChild(price);
-        meta.appendChild(badge);
-
-        content.appendChild(title);
-        content.appendChild(desc);
-        content.appendChild(meta);
-
-        c.appendChild(t);
-        c.appendChild(content);
-
-        cards.appendChild(c);
-      });
-
-      sec.appendChild(cards);
-      root.appendChild(sec);
-    });
-
-    if(!root.children.length){
-      const empty = document.createElement('div');
-      empty.className = "hero-card";
-      empty.style.marginTop = "12px";
-      empty.innerHTML = `<div>
-        <h2 class="hero-title">لا توجد نتائج</h2>
-        <p class="hero-sub">جرّب كلمة بحث أخرى أو اختر قسم مختلف.</p>
-      </div>`;
-      root.appendChild(empty);
-    }
-  }
-
-  function sync(){
-    buildChips();
-    render();
-  }
-
-  q.addEventListener('input', render);
-
-  document.getElementById('btnAll').addEventListener('click', () => {
-    activeSectionId = "all";
-    q.value = "";
-    sync();
-    window.scrollTo({top:0, behavior:"smooth"});
+function build(){
+  chips.innerHTML="";
+  [{id:"all",name:"الكل"},...MENU_DATA].forEach(s=>{
+    const c=document.createElement("div");
+    c.className="chip"+(active===s.id?" active":"");
+    c.textContent=s.name;
+    c.onclick=()=>{active=s.id;render()};
+    chips.appendChild(c);
   });
+}
 
-  // زر واتساب (عدّل الرقم)
-  document.getElementById('btnCall').addEventListener('click', () => {
-    const phone = "966500000000"; // ضع رقمك بصيغة دولية بدون +
-    const msg = encodeURIComponent("السلام عليكم، أريد الاستفسار عن الطلب من المنيو.");
-    window.open(`https://wa.me/${phone}?text=${msg}`, "_blank");
+function render(){
+  root.innerHTML="";
+  MENU_DATA.forEach(sec=>{
+    if(active!=="all"&&active!==sec.id)return;
+    const box=document.createElement("div");
+    box.className="section";
+    box.innerHTML=`<h2>${sec.name}</h2>`;
+    const cards=document.createElement("div");
+    cards.className="cards";
+    sec.items.filter(i=>i.name.includes(q.value)).forEach(i=>{
+      const c=document.createElement("div");
+      c.className="card";
+      c.innerHTML=`
+        <div class="thumb" style="background-image:url('${i.img}')">
+          <div class="tag">${i.tag}</div>
+        </div>
+        <div class="content">
+          <h3 class="title">${i.name}</h3>
+          <p class="desc">${i.desc}</p>
+          <div class="meta">
+            <div class="price">${i.price} ر.س</div>
+            <div class="badge">${i.badge}</div>
+          </div>
+        </div>`;
+      c.onclick=()=>openModal(i);
+      cards.appendChild(c);
+    });
+    box.appendChild(cards);
+    root.appendChild(box);
   });
+}
 
-  // أول تشغيل
-  sync();
+function openModal(i){
+  document.getElementById("mTitle").textContent=i.name;
+  document.getElementById("mDesc").textContent=i.desc;
+  document.getElementById("mPrice").textContent=i.price+" ر.س";
+  document.getElementById("mImg").src=i.img;
+  document.getElementById("modal").style.display="flex";
+}
+function closeModal(){
+  document.getElementById("modal").style.display="none";
+}
+
+q.oninput=render;
+document.getElementById("btnAll").onclick=()=>{active="all";q.value="";render()};
+
+build();render();
 </script>
+
 </body>
 </html>
