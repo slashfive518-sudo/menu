@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Menu Admin</title>
+  <style>
+    body{margin:0;font-family:system-ui;background:#0b0b12;color:#f1f1f5}
+    .wrap{max-width:900px;margin:0 auto;padding:18px}
+    .card{border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.05);border-radius:16px;padding:14px;margin-bottom:12px}
+    textarea,input,button{font-family:inherit}
+    input,textarea{width:100%;padding:10px;border-radius:12px;border:1px solid rgba(255,255,255,.12);background:rgba(0,0,0,.2);color:#f1f1f5}
+    textarea{min-height:260px;resize:vertical}
+    .row{display:flex;gap:10px;flex-wrap:wrap}
+    .btn{padding:10px 12px;border-radius:12px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.08);color:#f1f1f5;cursor:pointer}
+    .btn:hover{background:rgba(255,255,255,.12)}
+    a{color:#8b5cf6;text-decoration:none}
+    .hint{font-size:12px;color:rgba(241,241,245,.7);line-height:1.7}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="card">
+      <div class="row" style="justify-content:space-between;align-items:center">
+        <div>
+          <div style="font-weight:800;font-size:18px">Admin</div>
+          <div class="hint">GitHub Pages لا يحفظ تلقائيًا. عدّل ثم صدّر JSON والصقه في menu_data.json داخل GitHub.</div>
+        </div>
+        <a href="index.html">Back</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <label class="hint">اسم الكافية</label>
+      <input id="name" value="Five Slash" />
+      <div style="height:10px"></div>
+
+      <label class="hint">أقسام المنيو (JSON)</label>
+      <textarea id="sections"></textarea>
+
+      <div style="height:10px"></div>
+      <div class="row">
+        <button class="btn" onclick="loadFromFile()">Load current menu_data.json</button>
+        <button class="btn" onclick="exportJSON()">Export JSON</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="hint">الناتج (انسخه وضعه داخل menu_data.json)</div>
+      <textarea id="out" readonly></textarea>
+    </div>
+  </div>
+
+  <script>
+    const sampleSections = [
+      { title: "Hot Coffee", items: [
+        { name: "Espresso", price: 10, desc: "Single shot" },
+        { name: "Cappuccino", price: 16, desc: "Milk foam" }
+      ]},
+      { title: "Iced Drinks", items: [
+        { name: "Iced Latte", price: 18, desc: "Cold milk + espresso" }
+      ]}
+    ];
+
+    document.getElementById('sections').value = JSON.stringify(sampleSections, null, 2);
+
+    async function loadFromFile(){
+      const res = await fetch('menu_data.json', { cache: 'no-store' });
+      const data = await res.json();
+      document.getElementById('name').value = data.name || '';
+      document.getElementById('sections').value = JSON.stringify(data.sections || [], null, 2);
+      document.getElementById('out').value = '';
+    }
+
+    function exportJSON(){
+      let sections;
+      try{
+        sections = JSON.parse(document.getElementById('sections').value || '[]');
+      }catch(e){
+        alert('JSON غير صحيح داخل الأقسام');
+        return;
+      }
+      const obj = { name: document.getElementById('name').value.trim(), sections };
+      document.getElementById('out').value = JSON.stringify(obj, null, 2);
+    }
+  </script>
+</body>
+</html>

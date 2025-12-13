@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Five Slash Menu</title>
+  <style>
+    body{margin:0;font-family:system-ui;background:#0b0b12;color:#f1f1f5}
+    .wrap{max-width:900px;margin:0 auto;padding:18px}
+    .card{border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.05);border-radius:16px;padding:14px;margin-bottom:12px}
+    h1{margin:0 0 8px;font-size:22px}
+    h2{margin:0 0 10px;font-size:16px;color:rgba(241,241,245,.85)}
+    .item{display:flex;justify-content:space-between;gap:10px;padding:10px;border:1px solid rgba(255,255,255,.08);border-radius:12px;background:rgba(0,0,0,.18);margin-top:8px}
+    .name{font-weight:700}
+    .desc{font-size:12px;color:rgba(241,241,245,.7);margin-top:4px}
+    .price{font-weight:800;white-space:nowrap}
+    .top{display:flex;justify-content:space-between;align-items:center;gap:10px}
+    a{color:#8b5cf6;text-decoration:none}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="card top">
+      <div>
+        <h1 id="cafeName">Menu</h1>
+        <div style="font-size:12px;color:rgba(241,241,245,.7)">يتم التحديث من ملف menu_data.json</div>
+      </div>
+      <a href="admin.html">Admin</a>
+    </div>
+
+    <div id="root"></div>
+  </div>
+
+  <script>
+    async function loadMenu(){
+      const res = await fetch('menu_data.json', { cache: 'no-store' });
+      if(!res.ok) throw new Error('Failed to load menu_data.json');
+      const data = await res.json();
+
+      document.getElementById('cafeName').textContent = data.name || 'Menu';
+      const root = document.getElementById('root');
+      root.innerHTML = '';
+
+      (data.sections || []).forEach(sec => {
+        const c = document.createElement('div');
+        c.className = 'card';
+        c.innerHTML = `<h2>${sec.title || ''}</h2>`;
+        (sec.items || []).forEach(it => {
+          const row = document.createElement('div');
+          row.className = 'item';
+          row.innerHTML = `
+            <div>
+              <div class="name">${it.name || ''}</div>
+              ${it.desc ? `<div class="desc">${it.desc}</div>` : ``}
+            </div>
+            <div class="price">${(it.price ?? '')} SAR</div>
+          `;
+          c.appendChild(row);
+        });
+        root.appendChild(c);
+      });
+    }
+    loadMenu().catch(err => {
+      document.getElementById('root').innerHTML =
+        `<div class="card">Error: ${err.message}</div>`;
+    });
+  </script>
+</body>
+</html>
