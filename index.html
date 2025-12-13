@@ -92,9 +92,34 @@
       transform: translateY(-2px);
     }
     
-    .logo{
+    .logo-container{
       width:50px;
       height:50px;
+      position:relative;
+    }
+    
+    .logo-img{
+      width:100%;
+      height:100%;
+      border-radius:14px;
+      object-fit:cover;
+      border:2px solid var(--gold);
+      box-shadow: 
+        0 0 20px var(--gold-glow),
+        var(--shadow-light);
+      transition: var(--transition);
+    }
+    
+    .brand:hover .logo-img{
+      transform: scale(1.05);
+      box-shadow: 
+        0 0 25px var(--gold-glow),
+        0 8px 20px rgba(0,0,0,0.5);
+    }
+    
+    .logo-fallback{
+      width:100%;
+      height:100%;
       border-radius:14px;
       background: linear-gradient(135deg, var(--gold), var(--gold-light));
       display:grid;
@@ -104,27 +129,7 @@
       box-shadow: 
         0 0 20px var(--gold-glow),
         var(--shadow-light);
-      position:relative;
-      overflow:hidden;
-    }
-    
-    .logo::after{
-      content:'';
-      position:absolute;
-      top:0;
-      left:0;
-      right:0;
-      bottom:0;
-      background: linear-gradient(45deg, transparent, rgba(255,255,255,0.1), transparent);
-      transform: translateX(-100%);
-    }
-    
-    .brand:hover .logo::after{
-      animation: shine 1.5s ease;
-    }
-    
-    @keyframes shine{
-      100%{ transform: translateX(100%); }
+      font-size:20px;
     }
     
     .brand h1{
@@ -311,7 +316,7 @@
       left:0;
       right:0;
       bottom:0;
-      background: linear-gradient(135deg, var(--gold), var(--gold-light));
+      background: linear-gradient(135deg, var(--gold), var(--gold-light);
       opacity:0;
       transition: opacity 0.3s ease;
       z-index:-1;
@@ -784,7 +789,9 @@
 <header class="topbar">
   <div class="wrap">
     <a href="../" class="brand">
-      <div class="logo">FS</div>
+      <div class="logo-container" id="logoContainer">
+        <!-- سيتم إضافة الشعار هنا بواسطة JavaScript -->
+      </div>
       <div>
         <h1>Five Slash</h1>
         <p>القائمة الرقمية • اختر واطلب</p>
@@ -890,7 +897,28 @@ const root = document.getElementById("menuRoot");
 const chips = document.getElementById("chips");
 const q = document.getElementById("q");
 const emptyState = document.getElementById("emptyState");
+const logoContainer = document.getElementById("logoContainer");
 let active = "all";
+
+// تحميل شعار الموقع
+function loadLogo() {
+  const logoImg = document.createElement('img');
+  logoImg.src = 'logo.jpeg'; // استخدام logo.jpeg
+  logoImg.alt = 'Five Slash Logo';
+  logoImg.className = 'logo-img';
+  
+  logoImg.onload = function() {
+    logoContainer.appendChild(logoImg);
+  };
+  
+  logoImg.onerror = function() {
+    // إذا فشل تحميل الشعار، عرض بديل
+    const fallback = document.createElement('div');
+    fallback.className = 'logo-fallback';
+    fallback.textContent = 'FS';
+    logoContainer.appendChild(fallback);
+  };
+}
 
 // وظيفة لإنشاء صورة مع fallback
 function createImageElement(src, alt, className, isThumb = true) {
@@ -1060,6 +1088,7 @@ document.addEventListener('keydown', function(e) {
 });
 
 // تهيئة التطبيق
+loadLogo(); // تحميل الشعار أولاً
 build();
 render();
 </script>
