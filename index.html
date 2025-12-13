@@ -84,31 +84,77 @@
     }
 
     /* ===== Hero ===== */
-    .hero-card{
-      margin-top:18px;
-      border:1px solid var(--border);
-      background: rgba(255,255,255,.03);
-      border-radius:var(--radius);
-      padding:16px;
-      display:flex;flex-wrap:wrap;gap:12px;justify-content:space-between;
-      box-shadow: var(--shadow);
-    }
+    /* ===== Hero ===== */
+.hero-card{
+  margin-top:18px;
+  border:1px solid var(--border);
+  background: rgba(255,255,255,.03);
+  border-radius:var(--radius);
+  padding:16px;
+  box-shadow: var(--shadow);
 
-    .chips{display:flex;gap:8px;flex-wrap:wrap}
-    .chip{
-      padding:8px 12px;
-      border-radius:999px;
-      border:1px solid var(--border);
-      background: rgba(255,255,255,.03);
-      color:var(--muted);
-      cursor:pointer;
-      font-size:12px;
-    }
-    .chip.active{
-      background: rgba(217,177,95,.15);
-      border-color: var(--gold);
-      color:var(--text);
-    }
+  display:flex;
+  flex-direction: column;          /* مهم: يمنع تمدد chips */
+  gap: 12px;
+}
+
+/* ===== Chips (Fix) ===== */
+.chips{
+  display:flex;
+  gap:10px;
+  align-items:center;
+
+  flex-wrap: nowrap;              /* مهم: سطر واحد فقط */
+  overflow-x: auto;               /* سحب أفقي */
+  overflow-y: hidden;
+  padding: 6px 2px;
+
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+}
+.chips::-webkit-scrollbar{ height: 6px; }
+.chips::-webkit-scrollbar-thumb{
+  background: rgba(217,177,95,.25);
+  border-radius: 999px;
+}
+
+/* chip button */
+.chip{
+  appearance:none;
+  border:1px solid var(--border);
+  background: rgba(255,255,255,.03);
+  color: var(--muted);
+
+  height: 42px;                   /* مهم: ارتفاع ثابت */
+  padding: 0 16px;                /* بدون padding عمودي */
+  border-radius: 999px;
+
+  display:inline-flex;            /* يمنع التمدد */
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1;
+
+  white-space: nowrap;            /* يمنع النزول لسطر */
+  flex: 0 0 auto;                 /* يمنع التمدد */
+  cursor:pointer;
+  transition: .15s ease;
+}
+
+.chip:hover{
+  border-color: rgba(217,177,95,.55);
+  transform: translateY(-1px);
+}
+
+.chip.active{
+  background: rgba(217,177,95,.15);
+  border-color: rgba(217,177,95,.70);
+  color: var(--text);
+}
+
 
     /* ===== Grid ===== */
     .grid{display:grid;grid-template-columns:repeat(12,1fr);gap:12px;margin-top:16px}
@@ -280,7 +326,8 @@ let active="all";
 function build(){
   chips.innerHTML="";
   [{id:"all",name:"الكل"},...MENU_DATA].forEach(s=>{
-    const c=document.createElement("div");
+    const c=document.createElement("button");
+c.type = "button";
     c.className="chip"+(active===s.id?" active":"");
     c.textContent=s.name;
     c.onclick=()=>{active=s.id;render()};
@@ -298,7 +345,8 @@ function render(){
     const cards=document.createElement("div");
     cards.className="cards";
     sec.items.filter(i=>i.name.includes(q.value)).forEach(i=>{
-      const c=document.createElement("div");
+      const c=document.createElement("button");
+c.type = "button";
       c.className="card";
       c.innerHTML=`
         <div class="thumb" style="background-image:url('${i.img}')">
