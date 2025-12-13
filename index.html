@@ -3,53 +3,86 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Menu | اسم الكافيه</title>
-  <meta name="description" content="منيو اسم الكافيه - اطلب بسهولة عبر الجوال" />
+  <title>Menu | Five Slash</title>
+  <meta name="description" content="منيو Five Slash - اطلب بسهولة عبر الجوال" />
+
   <style>
     :root{
-      --bg:#0b0c10;
-      --panel:#121420;
-      --card:#161a2a;
-      --border:rgba(255,255,255,.08);
-      --text:#f5f7ff;
-      --muted:rgba(245,247,255,.7);
-      --brand:#d9b15f; /* ذهبي */
-      --brand2:#8a6cff; /* بنفسجي خفيف */
-      --shadow: 0 10px 30px rgba(0,0,0,.35);
+      /* Five Slash Dark/Red Luxury Theme */
+      --bg:#070709;
+      --panel:#0b0b10;
+      --card:#101018;
+
+      --border:rgba(255,255,255,.10);
+      --text:#f5f6fb;
+      --muted:rgba(245,246,251,.72);
+
+      --brand:#ff3d2e;   /* أحمر */
+      --brand2:#ff6a3d;  /* برتقالي-أحمر */
+
+      --shadow: 0 14px 38px rgba(0,0,0,.55);
       --radius:16px;
     }
+
     *{box-sizing:border-box}
     body{
       margin:0;
       font-family: system-ui, -apple-system, "Segoe UI", Tahoma, Arial, sans-serif;
       background:
-        radial-gradient(900px 500px at 80% -10%, rgba(217,177,95,.22), transparent 55%),
-        radial-gradient(700px 500px at 10% 10%, rgba(138,108,255,.18), transparent 60%),
-        var(--bg);
+        radial-gradient(900px 520px at 18% 12%, rgba(255,61,46,.22), transparent 60%),
+        radial-gradient(900px 520px at 82% 85%, rgba(255,106,61,.14), transparent 58%),
+        radial-gradient(700px 420px at 55% 28%, rgba(255,255,255,.06), transparent 55%),
+        linear-gradient(180deg, #0f1016, #060607);
       color:var(--text);
     }
     a{color:inherit;text-decoration:none}
+
     .wrap{max-width:1100px;margin:0 auto;padding:18px}
+
     .topbar{
       position:sticky; top:0; z-index:10;
       backdrop-filter: blur(10px);
-      background: rgba(11,12,16,.65);
+      -webkit-backdrop-filter: blur(10px);
+      background: rgba(6,6,7,.65);
       border-bottom:1px solid var(--border);
     }
     .topbar .wrap{display:flex; gap:12px; align-items:center; justify-content:space-between}
+
     .brand{
       display:flex; align-items:center; gap:10px; min-width: 220px;
     }
     .logo{
       width:40px;height:40px;border-radius:12px;
-      background: linear-gradient(135deg, rgba(217,177,95,.95), rgba(138,108,255,.6));
+      background: linear-gradient(135deg, rgba(255,61,46,.95), rgba(255,106,61,.65));
       box-shadow: var(--shadow);
+      border: 1px solid rgba(255,255,255,.10);
       display:grid; place-items:center;
-      font-weight:800;
+      font-weight:900;
+      position:relative;
+      overflow:hidden;
     }
+    .logo:before{
+      content:"";
+      position:absolute;
+      inset:-40%;
+      background: linear-gradient(120deg, transparent 40%, rgba(255,255,255,.18) 50%, transparent 60%);
+      transform: translateX(-60%) rotate(12deg);
+      animation: shine 4.5s ease-in-out infinite;
+      pointer-events:none;
+    }
+    @keyframes shine{
+      0%{ transform: translateX(-70%) rotate(12deg); opacity:0; }
+      20%{ opacity:.55; }
+      50%{ transform: translateX(50%) rotate(12deg); opacity:.45; }
+      80%{ opacity:0; }
+      100%{ transform: translateX(70%) rotate(12deg); opacity:0; }
+    }
+
     .brand h1{margin:0;font-size:16px;line-height:1.2}
     .brand p{margin:2px 0 0; font-size:12px; color:var(--muted)}
+
     .actions{display:flex; gap:10px; align-items:center}
+
     .btn{
       border:1px solid var(--border);
       background: rgba(255,255,255,.04);
@@ -60,7 +93,12 @@
       transition:.15s ease;
       display:flex; gap:8px; align-items:center;
     }
-    .btn:hover{transform: translateY(-1px); border-color: rgba(217,177,95,.35)}
+    .btn:hover{
+      transform: translateY(-1px);
+      border-color: rgba(255,61,46,.40);
+      box-shadow: 0 10px 20px rgba(0,0,0,.35);
+    }
+
     .search{
       flex:1;
       min-width: 260px;
@@ -77,13 +115,12 @@
       color: var(--text);
       font-size:14px;
     }
-    .search input::placeholder{color: rgba(245,247,255,.55)}
-    .hero{
-      padding:18px 0 6px;
-    }
+    .search input::placeholder{color: rgba(245,246,251,.55)}
+
+    .hero{ padding:18px 0 6px; }
     .hero-card{
       border:1px solid var(--border);
-      background: linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02));
+      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
       border-radius: var(--radius);
       padding:16px;
       box-shadow: var(--shadow);
@@ -91,6 +128,7 @@
     }
     .hero-title{margin:0;font-size:18px}
     .hero-sub{margin:6px 0 0;color:var(--muted);font-size:13px}
+
     .chips{display:flex; flex-wrap:wrap; gap:8px}
     .chip{
       border:1px solid var(--border);
@@ -104,9 +142,9 @@
       user-select:none;
     }
     .chip.active{
-      border-color: rgba(217,177,95,.45);
+      border-color: rgba(255,61,46,.45);
       color: var(--text);
-      background: rgba(217,177,95,.10);
+      background: rgba(255,61,46,.12);
     }
 
     .grid{
@@ -115,10 +153,8 @@
       gap:12px;
       padding:14px 0 40px;
     }
-    .section{
-      grid-column: 1 / -1;
-      margin-top: 6px;
-    }
+
+    .section{ grid-column: 1 / -1; margin-top: 6px; }
     .section h2{
       margin:18px 0 10px;
       font-size:15px;
@@ -130,43 +166,58 @@
       font-weight: 500;
       font-size: 12px;
     }
+
     .cards{
       display:grid;
       grid-template-columns: repeat(12, 1fr);
       gap:12px;
     }
+
     .card{
       grid-column: span 4;
       border:1px solid var(--border);
       background: rgba(255,255,255,.03);
       border-radius: var(--radius);
       overflow:hidden;
-      box-shadow: 0 6px 20px rgba(0,0,0,.25);
+      box-shadow: 0 6px 20px rgba(0,0,0,.28);
       transition:.15s ease;
       cursor:pointer;
       position:relative;
     }
-    .card:hover{transform: translateY(-2px); border-color: rgba(217,177,95,.35)}
+    .card:hover{
+      transform: translateY(-2px);
+      border-color: rgba(255,61,46,.35);
+    }
+
     .thumb{
       height:120px;
       background:
-        radial-gradient(600px 200px at 10% 10%, rgba(217,177,95,.25), transparent 55%),
-        radial-gradient(500px 200px at 90% 0%, rgba(138,108,255,.22), transparent 60%),
+        radial-gradient(600px 220px at 12% 15%, rgba(255,61,46,.24), transparent 58%),
+        radial-gradient(520px 220px at 88% 0%, rgba(255,106,61,.18), transparent 62%),
         rgba(255,255,255,.02);
       border-bottom:1px solid var(--border);
       display:flex; align-items:flex-end; padding:12px;
     }
+
     .tag{
       font-size:11px;
       padding:6px 10px;
       border-radius: 999px;
-      border:1px solid rgba(255,255,255,.10);
-      background: rgba(0,0,0,.25);
-      color: var(--muted);
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(0,0,0,.28);
+      color: rgba(245,246,251,.82);
     }
+
     .content{padding:12px}
     .title{margin:0;font-size:14px}
-    .desc{margin:7px 0 0; font-size:12px; color: var(--muted); line-height:1.6; min-height: 38px}
+    .desc{
+      margin:7px 0 0;
+      font-size:12px;
+      color: var(--muted);
+      line-height:1.6;
+      min-height: 38px
+    }
+
     .meta{
       margin-top: 10px;
       display:flex; align-items:center; justify-content:space-between;
@@ -174,12 +225,12 @@
       border-top:1px dashed rgba(255,255,255,.10);
       padding-top:10px;
     }
-    .price{font-weight:800; color: var(--brand)}
+    .price{font-weight:900; color: var(--brand)}
     .badge{
       font-size:11px;
-      color: rgba(245,247,255,.8);
-      border:1px solid rgba(217,177,95,.30);
-      background: rgba(217,177,95,.10);
+      color: rgba(245,246,251,.9);
+      border:1px solid rgba(255,61,46,.32);
+      background: rgba(255,61,46,.12);
       padding:6px 10px;
       border-radius: 999px;
       white-space:nowrap;
@@ -188,7 +239,7 @@
     /* Modal */
     .modal-backdrop{
       position:fixed; inset:0;
-      background: rgba(0,0,0,.55);
+      background: rgba(0,0,0,.60);
       display:none;
       align-items:center; justify-content:center;
       padding: 18px;
@@ -197,17 +248,21 @@
     .modal{
       width:min(720px, 100%);
       border:1px solid var(--border);
-      background: rgba(18,20,32,.95);
+      background: rgba(12,12,16,.96);
       border-radius: 18px;
       box-shadow: var(--shadow);
       overflow:hidden;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
     }
     .modal-top{
       display:flex; align-items:center; justify-content:space-between;
       gap:12px;
       padding:14px;
       border-bottom:1px solid var(--border);
-      background: linear-gradient(180deg, rgba(255,255,255,.05), transparent);
+      background:
+        radial-gradient(500px 220px at 10% 50%, rgba(255,61,46,.20), transparent 60%),
+        linear-gradient(180deg, rgba(255,255,255,.05), transparent);
     }
     .modal-top h3{margin:0; font-size:15px}
     .close{
@@ -217,7 +272,9 @@
       border-radius: 12px;
       padding:8px 10px;
       cursor:pointer;
+      transition:.15s ease;
     }
+    .close:hover{border-color: rgba(255,61,46,.35); transform: translateY(-1px)}
     .modal-body{padding:14px; display:grid; gap:12px}
     .modal-hero{
       border:1px solid var(--border);
@@ -261,10 +318,10 @@
   <header class="topbar">
     <div class="wrap">
       <div class="brand">
-        <div class="logo">C</div>
+        <div class="logo" title="Five Slash">FS</div>
         <div>
-          <h1>اسم الكافيه</h1>
-          <p>Menu • Scan & Order</p>
+          <h1>Five Slash</h1>
+          <p>Menu • Scan &amp; Order</p>
         </div>
       </div>
 
