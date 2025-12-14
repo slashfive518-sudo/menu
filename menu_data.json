@@ -1,27 +1,16 @@
-{
-  "name": "Five Slash",
-  "sections": [
-    {
-      "title": "Hot Coffee",
-      "items": [
-        { "name": "Espresso", "price": 10, "desc": "Single shot" },
-        { "name": "Americano", "price": 12, "desc": "Espresso + hot water" },
-        { "name": "Cappuccino", "price": 16, "desc": "Espresso + milk foam" }
-      ]
-    },
-    {
-      "title": "Iced Drinks",
-      "items": [
-        { "name": "Iced Latte", "price": 18, "desc": "Cold milk + espresso" },
-        { "name": "Cold Brew", "price": 20, "desc": "Slow brewed" }
-      ]
-    },
-    {
-      "title": "Desserts",
-      "items": [
-        { "name": "Cheesecake", "price": 26, "desc": "Classic" },
-        { "name": "Chocolate Cake", "price": 24, "desc": "Rich chocolate" }
-      ]
-    }
-  ]
-}
+[
+  {
+    "id": "coffee",
+    "name": "قهوة ساخنة",
+    "items": [
+      {
+        "name": "لاتيه كلاسيك",
+        "price": 12,
+        "desc": "إسبريسو مع حليب مبخّر ناعم.",
+        "tag": "Hot",
+        "badge": "الأكثر طلبًا",
+        "img": "images/latte.jpg"
+      }
+    ]
+  }
+]

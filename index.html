@@ -1,0 +1,199 @@
+<script>
+/* ============================
+   GitHub Pages Dynamic Menu
+   Reads: ./menu_data.json
+   ============================ */
+
+const root = document.getElementById("menuRoot");
+const chips = document.getElementById("chips");
+const q = document.getElementById("q");
+const emptyState = document.getElementById("emptyState");
+
+const modal = document.getElementById("modal");
+const mTitle = document.getElementById("mTitle");
+const mImg = document.getElementById("mImg");
+const mDesc = document.getElementById("mDesc");
+const mPrice = document.getElementById("mPrice");
+const mTag = document.getElementById("mTag");
+const mBadge = document.getElementById("mBadge");
+
+const DATA_URL = "./menu_data.json";           // داخل نفس مجلد menu
+const PLACEHOLDER_IMG = "./images/placeholder.jpg"; // ضع صورة placeholder بهذا المسار
+
+let MENU_DATA = [];
+let active = "all";
+
+function norm(s){ return String(s || "").toLowerCase().trim(); }
+
+function matches(item, query){
+  if(!query) return true;
+  const t = norm(item.name) + " " + norm(item.desc) + " " + norm(item.tag) + " " + norm(item.badge);
+  return t.includes(norm(query));
+}
+
+function safeImg(path){
+  const p = String(path || "").trim();
+  return p ? p : PLACEHOLDER_IMG;
+}
+
+function buildChips(){
+  chips.innerHTML = "";
+  const all = [{id:"all", name:"الكل"}].concat(MENU_DATA.map(s => ({id:s.id, name:s.name})));
+
+  all.forEach((sec) => {
+    const b = document.createElement("button");
+    b.type = "button";
+    b.className = "chip" + (active === sec.id ? " active" : "");
+    b.textContent = sec.name;
+    b.onclick = () => { active = sec.id; sync(); };
+    chips.appendChild(b);
+  });
+}
+
+function render(){
+  root.innerHTML = "";
+  emptyState.style.display = "none";
+  let hasItems = false;
+
+  MENU_DATA.forEach(sec => {
+    if(active !== "all" && active !== sec.id) return;
+
+    const filtered = (sec.items || []).filter(i => matches(i, q.value));
+    if(filtered.length === 0) return;
+
+    hasItems = true;
+
+    const box = document.createElement("div");
+    box.className = "section";
+
+    const header = document.createElement("div");
+    header.className = "section-header";
+    header.innerHTML = `<h2>${sec.name}</h2><div class="item-count">${filtered.length} منتج</div>`;
+    box.appendChild(header);
+
+    const cards = document.createElement("div");
+    cards.className = "cards";
+
+    filtered.forEach(i => {
+      const card = document.createElement("div");
+      card.className = "card";
+
+      const thumb = document.createElement("div");
+      thumb.className = "thumb";
+
+      // Background image with fallback
+      const imgUrl = safeImg(i.img);
+      thumb.style.backgroundImage = `url('${imgUrl}')`;
+      thumb.style.backgroundColor = "rgba(255,255,255,.03)";
+
+      // If image fails, swap to placeholder (works by preloading)
+      const testImg = new Image();
+      testImg.onload = () => {};
+      testImg.onerror = () => { thumb.style.backgroundImage = `url('${PLACEHOLDER_IMG}')`; };
+      testImg.src = imgUrl;
+
+      const tag = document.createElement("div");
+      tag.className = "tag";
+      tag.textContent = i.tag || "Menu";
+      thumb.appendChild(tag);
+
+      const content = document.createElement("div");
+      content.className = "content";
+      content.innerHTML = `
+        <h3 class="title">${i.name || ""}</h3>
+        <p class="desc">${i.desc || "بدون وصف"}</p>
+        <div class="meta">
+          <div class="price">${Number(i.price || 0)} <small>ر.س</small></div>
+          <div class="badge">${i.badge || "تفاصيل"}</div>
+        </div>
+      `;
+
+      card.appendChild(thumb);
+      card.appendChild(content);
+      card.onclick = () => openModal(i);
+
+      cards.appendChild(card);
+    });
+
+    box.appendChild(cards);
+    root.appendChild(box);
+  });
+
+  if(!hasItems){
+    emptyState.style.display = "block";
+  }
+}
+
+function openModal(i){
+  mTitle.textContent = i.name || "";
+  mDesc.textContent  = i.desc || "بدون وصف";
+  mPrice.textContent = `${Number(i.price || 0)} ر.س`;
+  mTag.textContent   = i.tag || "";
+  mBadge.textContent = i.badge || "تفاصيل";
+
+  const imgUrl = safeImg(i.img);
+  mImg.style.display = "block";
+  mImg.src = imgUrl;
+  mImg.onerror = () => {
+    mImg.onerror = null;
+    mImg.src = PLACEHOLDER_IMG;
+  };
+
+  modal.style.display = "flex";
+  modal.setAttribute("aria-hidden", "false");
+  modal.onclick = (e) => { if(e.target === modal) closeModal(); };
+}
+
+function closeModal(){
+  modal.style.display = "none";
+  modal.setAttribute("aria-hidden", "true");
+}
+
+let t = null;
+q.addEventListener("input", () => {
+  clearTimeout(t);
+  t = setTimeout(render, 180);
+});
+
+document.getElementById("btnAll").onclick = () => {
+  active = "all";
+  q.value = "";
+  sync();
+};
+
+document.addEventListener("keydown", (e) => {
+  if(e.key === "Escape") closeModal();
+});
+
+function sync(){
+  buildChips();
+  render();
+}
+
+/* Load JSON from GitHub Pages */
+async function boot(){
+  try{
+    const res = await fetch(DATA_URL, { cache: "no-store" });
+    if(!res.ok) throw new Error("Failed to load menu_data.json");
+    const data = await res.json();
+
+    if(!Array.isArray(data)) throw new Error("menu_data.json must be an array of sections");
+    MENU_DATA = data.map(s => ({
+      id: String(s.id || "").trim() || crypto.randomUUID(),
+      name: String(s.name || "").trim() || "قسم",
+      items: Array.isArray(s.items) ? s.items : []
+    }));
+
+    sync();
+  }catch(err){
+    console.error(err);
+    MENU_DATA = [];
+    sync();
+    emptyState.style.display = "block";
+    emptyState.querySelector("h3").textContent = "تعذر تحميل القائمة";
+    emptyState.querySelector("p").textContent = "تأكد من وجود ملف menu_data.json في نفس مجلد الصفحة، وأنه JSON صحيح.";
+  }
+}
+
+boot();
+</script>
