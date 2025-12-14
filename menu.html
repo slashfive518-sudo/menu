@@ -826,7 +826,7 @@
 ====================================== */
 
 const PLACEHOLDER_IMG = "images/placeholder.jpg"; // ضع صورة هنا إن أردت
-const WHATSAPP_PHONE  = "966500000000"; // غيّر الرقم (بدون +)
+const WHATSAPP_PHONE  = "966556843469"; // غيّر الرقم (بدون +)
 
 const MENU_DATA = [
   {
@@ -1157,9 +1157,15 @@ function sync(){
   updateStats();
 }
 
-/* Floating buttons */
 const waBtn = document.getElementById("waBtn");
-waBtn.href = `https://wa.me/${WHATSAPP_PHONE}?text=${encodeURIComponent("السلام عليكم، أريد الطلب من المنيو.")}`;
+
+waBtn.addEventListener("click", function (e) {
+  e.preventDefault();
+
+  // بدون رسالة = المستخدم يكتب بنفسه
+  window.location.href = "https://wa.me/966556843469";
+});
+
 
 document.getElementById("upBtn").onclick = () => {
   window.scrollTo({top:0, behavior:"smooth"});
