@@ -681,7 +681,33 @@
       .cards{ grid-template-columns: 1fr; }
       .fab{ left:14px; bottom:14px; }
     }
-  </style>
+  /* ===== Mobile-first enhancements ===== */
+  @media (hover: none) {
+    .card:hover { transform: none; box-shadow: var(--shadow2); }
+    .btn:hover, .chip:hover { transform: none; }
+  }
+
+  @media (max-width: 520px){
+    .wrap{ padding:14px; }
+    .hero-inner{ padding:16px; }
+    .chips-wrap{ padding:0 16px 14px; }
+
+    .search{ padding:12px 14px; border-radius:14px; }
+    .search input{ font-size:16px; }
+
+    .actions{ gap:10px; }
+    .actions .btn{ padding:12px 14px; border-radius:14px; }
+
+    .cards{ padding:14px; gap:14px; }
+    .thumb{ height:170px; }
+    .content{ padding:14px; }
+
+    .modal-body{ padding:14px; }
+    .modal-image{ height:240px; }
+  }
+
+  .card, .btn, .chip { touch-action: manipulation; }
+</style>
 </head>
 
 <body>
