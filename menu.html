@@ -289,12 +289,40 @@
     .stat i{ color: var(--gold2); }
     .stat b{ color: var(--text); }
 
-    /* ===== Chips bar ===== */
+    /* ===== Chips bar (Desktop) ===== */
     .chips-wrap{
       padding:0 22px 16px;
       position:relative;
       z-index:2;
     }
+    .tools{
+      margin-top:16px;
+      display:flex;
+      gap:12px;
+      align-items:center;
+      justify-content:space-between;
+      flex-wrap:wrap;
+    }
+    .select{
+      border:1px solid var(--border2);
+      background: rgba(255,255,255,.04);
+      color: var(--text);
+      padding:10px 14px;
+      border-radius: 14px;
+      outline:none;
+      font-weight:800;
+      cursor:pointer;
+    }
+    .hint{
+      color: var(--muted);
+      font-weight:800;
+      display:flex;
+      align-items:center;
+      gap:10px;
+      white-space:nowrap;
+    }
+    .hint i{ color: var(--gold2); }
+
     .chips{
       display:flex; gap:12px; align-items:center;
       overflow-x:auto; overflow-y:hidden;
@@ -335,110 +363,93 @@
       box-shadow: 0 10px 22px rgba(217,177,95,.14);
     }
 
-    /* ===== Tools row ===== */
-    .tools{
-      margin-top:16px;
-      display:flex;
-      gap:12px;
-      align-items:center;
-      justify-content:space-between;
-      flex-wrap:wrap;
-    }
-    .select{
-      border:1px solid var(--border2);
-      background: rgba(255,255,255,.04);
-      color: var(--text);
-      padding:10px 14px;
-      border-radius: 14px;
-      outline:none;
-      font-weight:800;
-      cursor:pointer;
-    }
-    .hint{
-      color: var(--muted);
-      font-weight:800;
-      display:flex;
-      align-items:center;
-      gap:10px;
-      white-space:nowrap;
-    }
-    .hint i{ color: var(--gold2); }
-
-    /* ===== Categories Grid (Mobile friendly) ===== */
-    .categories{
-      margin-top:16px;
+    /* ===== NEW: Mobile Sections Grid (better for phone) ===== */
+    .sections-panel{
+      margin-top:14px;
       border-radius: var(--radius);
       border:1px solid var(--border2);
       background: rgba(255,255,255,.02);
-      box-shadow: var(--shadow2);
       overflow:hidden;
+      display:none; /* يظهر على الموبايل */
     }
-    .categories-head{
+    .sections-head{
       padding:14px 16px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      background: linear-gradient(180deg, rgba(255,255,255,.03), rgba(0,0,0,.12));
       border-bottom:1px solid rgba(255,215,128,.08);
-      background: linear-gradient(180deg, rgba(255,255,255,.03), rgba(0,0,0,.10));
+    }
+    .sections-head .title{
+      font-size:16px;
+      font-weight:1000;
+      display:flex;
+      align-items:center;
+      gap:10px;
+    }
+    .sections-head .title i{ color: var(--gold2); }
+    .sections-grid{
+      padding:14px;
+      display:grid;
+      grid-template-columns: repeat(2, minmax(0,1fr));
+      gap:12px;
+    }
+    .sec-card{
+      border:1px solid rgba(255,215,128,.12);
+      background: linear-gradient(180deg, rgba(255,255,255,.03), rgba(0,0,0,.22));
+      border-radius: 16px;
+      padding:14px 12px;
+      cursor:pointer;
+      transition: var(--transition);
       display:flex;
       align-items:center;
       justify-content:space-between;
       gap:10px;
+      min-height:74px;
     }
-    .categories-head .t{
-      font-weight:1000;
-      color: var(--text);
-      display:flex;
-      align-items:center;
-      gap:10px;
-    }
-    .categories-head .t i{ color: var(--gold2); }
-
-    .category-grid{
-      display:grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap:12px;
-      padding:14px;
-    }
-    .cat{
-      border:1px solid rgba(255,215,128,.14);
-      background: linear-gradient(180deg, rgba(255,255,255,.03), rgba(0,0,0,.22));
-      border-radius:16px;
-      padding:14px 12px;
-      cursor:pointer;
-      transition: var(--transition);
-      text-align:center;
-      position:relative;
-      overflow:hidden;
-    }
-    .cat:hover{
-      transform: translateY(-3px);
+    .sec-card:hover{
+      transform: translateY(-2px);
       border-color: rgba(217,177,95,.55);
-      box-shadow: 0 14px 30px rgba(0,0,0,.55);
+      box-shadow: 0 12px 26px rgba(0,0,0,.55), 0 0 20px rgba(217,177,95,.10);
     }
-    .cat.active{
-      border-color: rgba(217,177,95,.75);
-      box-shadow: 0 0 0 3px rgba(217,177,95,.10), 0 12px 26px rgba(217,177,95,.12);
-    }
-    .cat .icon{
-      width:46px; height:46px;
-      margin:0 auto 10px;
-      border-radius:14px;
+    .sec-left{
       display:flex;
-      align-items:center;
-      justify-content:center;
-      background: rgba(217,177,95,.12);
-      border:1px solid rgba(217,177,95,.22);
+      flex-direction:column;
+      gap:4px;
+      min-width:0;
     }
-    .cat .icon i{ color: var(--gold2); font-size:18px; }
-    .cat .name{
+    .sec-name{
       font-weight:1000;
       font-size:14px;
       color: var(--text);
-      line-height:1.25;
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
     }
-    .cat .sub{
-      margin-top:6px;
-      font-size:12px;
+    .sec-count{
       font-weight:900;
+      font-size:12px;
       color: var(--muted);
+    }
+    .sec-ico{
+      width:40px;
+      height:40px;
+      border-radius: 14px;
+      border:1px solid rgba(255,215,128,.16);
+      background: rgba(0,0,0,.22);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      flex: 0 0 auto;
+    }
+    .sec-ico i{
+      color: var(--gold2);
+      font-size:16px;
+      opacity:.95;
+    }
+    .sec-card.active{
+      border-color: rgba(217,177,95,.75);
+      background: linear-gradient(135deg, rgba(217,177,95,.22), rgba(241,210,138,.12));
     }
 
     /* ===== Sections & cards ===== */
@@ -708,19 +719,53 @@
       color: var(--gold2);
     }
 
-    /* Floating buttons (fixed for RTL: right) */
-    .fab{
+    /* ===== FIX: WhatsApp inside GREEN BOX (bottom-right) ===== */
+    .float-stack{
       position:fixed;
       right:18px;
       bottom:18px;
-      z-index:2500;
+      z-index:2600;
       display:flex;
       flex-direction:column;
       gap:10px;
+      align-items:flex-end;
     }
-    .fab a, .fab button{
-      width:54px; height:54px;
-      border-radius: 16px;
+
+    .wa-box{
+      position:relative;
+      width:64px;
+      height:64px;
+      border-radius:18px;
+      background: rgba(37,211,102,.18);
+      border:1px solid rgba(37,211,102,.38);
+      box-shadow: 0 14px 30px rgba(0,0,0,.55);
+      overflow:hidden;
+    }
+    .wa-box a{
+      position:absolute;
+      inset:0;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      border-radius:18px;
+      background: linear-gradient(135deg, rgba(37,211,102,.22), rgba(0,0,0,.35));
+      cursor:pointer;
+      transition: var(--transition);
+    }
+    .wa-box a:hover{
+      transform: translateY(-2px);
+      filter: brightness(1.05);
+    }
+    .wa-box i{
+      font-size:26px;
+      color:#25D366;
+      text-shadow: 0 8px 24px rgba(0,0,0,.55);
+    }
+
+    .up-btn{
+      width:54px;
+      height:54px;
+      border-radius:16px;
       border:1px solid rgba(255,215,128,.22);
       background: rgba(0,0,0,.48);
       color: var(--text);
@@ -731,16 +776,11 @@
       box-shadow: var(--shadow2);
       transition: var(--transition);
     }
-    .fab a:hover, .fab button:hover{
-      transform: translateY(-3px);
+    .up-btn:hover{
+      transform: translateY(-2px);
       border-color: rgba(217,177,95,.60);
     }
-    .fab .wa{
-      background: linear-gradient(135deg, rgba(37,211,102,.22), rgba(0,0,0,.45));
-      border-color: rgba(37,211,102,.35);
-    }
-    .fab .wa i{ font-size:20px; color: #25D366; }
-    .fab .up i{ font-size:18px; color: var(--gold2); }
+    .up-btn i{ font-size:18px; color: var(--gold2); }
 
     /* Responsive */
     @media(max-width:900px){
@@ -749,27 +789,8 @@
       .hero-inner{ grid-template-columns: 1fr; }
       .modal-grid{ grid-template-columns: 1fr; }
       .modal-image{ height:260px; }
-      .category-grid{ grid-template-columns: repeat(3, minmax(0, 1fr)); }
     }
-    @media(max-width:560px){
-      .category-grid{ grid-template-columns: repeat(2, minmax(0, 1fr)); }
-    }
-    @media(max-width:480px){
-      .topbar .wrap{ padding:12px 14px; }
-      .brand{ min-width: unset; }
-      .actions{ width:100%; }
-      .actions .btn{ flex:1; justify-content:center; }
-      .cards{ grid-template-columns: 1fr; }
-      .fab{ right:14px; bottom:14px; }
-    }
-
-    /* ===== Mobile-first enhancements ===== */
-    @media (hover: none) {
-      .card:hover { transform: none; box-shadow: var(--shadow2); }
-      .btn:hover, .chip:hover { transform: none; }
-    }
-
-    @media (max-width: 520px){
+    @media(max-width:520px){
       .wrap{ padding:14px; }
       .hero-inner{ padding:16px; }
       .chips-wrap{ padding:0 16px 14px; }
@@ -777,18 +798,31 @@
       .search{ padding:12px 14px; border-radius:14px; }
       .search input{ font-size:16px; }
 
-      .actions{ gap:10px; }
-      .actions .btn{ padding:12px 14px; border-radius:14px; }
+      .actions{ gap:10px; width:100%; }
+      .actions .btn{ flex:1; justify-content:center; padding:12px 14px; border-radius:14px; }
+      .select{ flex:1; }
 
-      .cards{ padding:14px; gap:14px; }
+      /* Mobile sections grid ON, chips OFF */
+      .sections-panel{ display:block; }
+      .chips{ display:none; }
+
+      .cards{ padding:14px; gap:14px; grid-template-columns: 1fr; }
       .thumb{ height:170px; }
       .content{ padding:14px; }
 
       .modal-body{ padding:14px; }
       .modal-image{ height:240px; }
+
+      .float-stack{ right:14px; bottom:14px; }
     }
 
-    .card, .btn, .chip, .cat { touch-action: manipulation; }
+    /* Mobile-first enhancements */
+    @media (hover: none) {
+      .card:hover { transform: none; box-shadow: var(--shadow2); }
+      .btn:hover, .chip:hover, .sec-card:hover { transform: none; }
+    }
+
+    .card, .btn, .chip, .sec-card, .up-btn { touch-action: manipulation; }
   </style>
 </head>
 
@@ -849,17 +883,19 @@
           <div class="hint"><i class="fas fa-wand-magic-sparkles"></i> اضغط على أي منتج لعرض التفاصيل</div>
           <div class="hint"><i class="fas fa-filter"></i> اختر قسم أو استخدم البحث والفرز</div>
         </div>
-        <div class="chips" id="chips"></div>
-      </div>
-    </section>
 
-    <!-- NEW: Mobile friendly category grid -->
-    <section class="categories" aria-label="categories">
-      <div class="categories-head">
-        <div class="t"><i class="fas fa-layer-group"></i><span>الأقسام</span></div>
-        <div class="count" id="catCount">—</div>
+        <!-- Desktop: chips -->
+        <div class="chips" id="chips"></div>
+
+        <!-- Mobile: better sections layout -->
+        <div class="sections-panel" aria-label="sections panel">
+          <div class="sections-head">
+            <div class="title"><i class="fas fa-layer-group"></i> الأقسام</div>
+            <div class="count"><span id="secCount">—</span> قسم</div>
+          </div>
+          <div class="sections-grid" id="sectionsGrid"></div>
+        </div>
       </div>
-      <div class="category-grid" id="catGrid"></div>
     </section>
 
     <div id="menuRoot" class="grid"></div>
@@ -897,16 +933,14 @@
     </div>
   </div>
 
-  <!-- Floating buttons -->
-  <div class="fab" aria-label="floating actions">
-    <!-- WhatsApp: رقم صحيح + رابط مباشر -->
-    <a class="wa" id="waBtn"
-       href="https://wa.me/966556843469"
-       target="_blank" rel="noopener"
-       title="اطلب عبر واتساب">
-      <i class="fab fa-whatsapp"></i>
-    </a>
-    <button class="up" id="upBtn" type="button" title="أعلى الصفحة">
+  <!-- Floating (bottom-right): WhatsApp inside green box + Up -->
+  <div class="float-stack" aria-label="floating actions">
+    <div class="wa-box" aria-label="WhatsApp box">
+      <a id="waBtn" href="https://wa.me/966556843469" target="_blank" rel="noopener" title="اطلب عبر واتساب">
+        <i class="fab fa-whatsapp"></i>
+      </a>
+    </div>
+    <button class="up-btn" id="upBtn" type="button" title="أعلى الصفحة" aria-label="Scroll to top">
       <i class="fas fa-arrow-up"></i>
     </button>
   </div>
@@ -914,12 +948,13 @@
 <script>
 /* ======================================
    UNIQUE LUX MENU (Single File)
-   - Search + Chips + Sorting + Modal
-   - NEW: Category Grid for mobile
-   - WhatsApp fixed (direct link)
+   - Search + Chips (Desktop) + Sections Grid (Mobile)
+   - Sorting + Modal
+   - WhatsApp fixed (inside green box)
 ====================================== */
 
 const PLACEHOLDER_IMG = "images/placeholder.jpg"; // ضع صورة هنا إن أردت
+const WHATSAPP_PHONE  = "966556843469"; // غيّر الرقم (بدون +)
 
 const MENU_DATA = [
   {
@@ -1047,6 +1082,9 @@ const MENU_DATA = [
 
 const root = document.getElementById("menuRoot");
 const chips = document.getElementById("chips");
+const sectionsGrid = document.getElementById("sectionsGrid");
+const secCount = document.getElementById("secCount");
+
 const q = document.getElementById("q");
 const emptyState = document.getElementById("emptyState");
 const sortSel = document.getElementById("sort");
@@ -1062,10 +1100,6 @@ const mBadge = document.getElementById("mBadge");
 const statItems = document.getElementById("statItems");
 const statSections = document.getElementById("statSections");
 
-/* NEW: category grid */
-const catGrid = document.getElementById("catGrid");
-const catCount = document.getElementById("catCount");
-
 let active = "all";
 
 function norm(s){ return String(s || "").toLowerCase().trim(); }
@@ -1079,80 +1113,62 @@ function safeImg(img){
   return s ? s : PLACEHOLDER_IMG;
 }
 
-/* Icons per section id */
-function catIconById(id){
-  const map = {
-    "coffee": "fa-mug-hot",
-    "coffee-cold": "fa-glass-water",
-    "cold": "fa-snowflake",
-    "smoothie": "fa-blender",
-    "tea": "fa-leaf",
-    "desserts": "fa-cookie-bite"
-  };
-  return map[id] || "fa-star";
+function sectionIcon(id){
+  if(id === "all") return "fa-layer-group";
+  if(id.includes("coffee")) return "fa-mug-hot";
+  if(id === "cold") return "fa-snowflake";
+  if(id === "smoothie") return "fa-leaf";
+  if(id === "tea") return "fa-mug-saucer";
+  if(id === "desserts") return "fa-cookie-bite";
+  return "fa-star";
 }
 
-function buildCategoryGrid(){
-  if(!catGrid) return;
-  catGrid.innerHTML = "";
-
-  const totalAll = MENU_DATA.reduce((n,s)=> n + ((s.items||[]).length), 0);
-
-  // All
-  const allBtn = document.createElement("button");
-  allBtn.type = "button";
-  allBtn.className = "cat" + (active === "all" ? " active" : "");
-  allBtn.innerHTML = `
-    <div class="icon"><i class="fas fa-layer-group"></i></div>
-    <div class="name">الكل</div>
-    <div class="sub">${totalAll} منتج</div>
-  `;
-  allBtn.onclick = () => {
-    active = "all";
-    q.value = "";
-    sortSel.value = "default";
-    sync();
-    const top = document.getElementById("menuRoot").offsetTop - 90;
-    window.scrollTo({ top, behavior:"smooth" });
-  };
-  catGrid.appendChild(allBtn);
-
-  MENU_DATA.forEach(sec => {
-    const total = (sec.items || []).length;
-    const b = document.createElement("button");
-    b.type = "button";
-    b.className = "cat" + (active === sec.id ? " active" : "");
-    b.innerHTML = `
-      <div class="icon"><i class="fas ${catIconById(sec.id)}"></i></div>
-      <div class="name">${sec.name}</div>
-      <div class="sub">${total} منتج</div>
-    `;
-    b.onclick = () => {
-      active = sec.id;
-      sync();
-      const top = document.getElementById("menuRoot").offsetTop - 90;
-      window.scrollTo({ top, behavior:"smooth" });
-    };
-    catGrid.appendChild(b);
-  });
-
-  if(catCount) catCount.textContent = `${MENU_DATA.length} قسم`;
-}
-
-function buildChips(){
+function buildChipsAndMobileSections(){
+  // Desktop chips
   chips.innerHTML = "";
-  const all = [{id:"all", name:"الكل", icon:"fa-layer-group"}].concat(
-    MENU_DATA.map(s => ({id:s.id, name:s.name, icon:"fa-star"}))
-  );
 
-  all.forEach((sec) => {
+  // Mobile section cards
+  sectionsGrid.innerHTML = "";
+
+  const list = [{id:"all", name:"الكل"}].concat(MENU_DATA.map(s => ({id:s.id, name:s.name})));
+
+  list.forEach((sec) => {
+    // counts (based on current search)
+    let count = 0;
+    if(sec.id === "all"){
+      MENU_DATA.forEach(s => {
+        count += (s.items || []).filter(i => matches(i, q.value)).length;
+      });
+    } else {
+      const s = MENU_DATA.find(x => x.id === sec.id);
+      count = (s?.items || []).filter(i => matches(i, q.value)).length;
+    }
+
+    // ----- Chip (desktop)
     const b = document.createElement("button");
     b.type = "button";
     b.className = "chip" + (active === sec.id ? " active" : "");
-    b.innerHTML = `<i class="fas ${sec.icon}"></i><span>${sec.name}</span>`;
-    b.onclick = () => { active = sec.id; sync(); };
+    b.innerHTML = `<i class="fas ${sectionIcon(sec.id)}"></i><span>${sec.name}</span>`;
+    b.onclick = () => { active = sec.id; sync(); scrollToMenuTop(); };
     chips.appendChild(b);
+
+    // ----- Mobile section card
+    const card = document.createElement("button");
+    card.type = "button";
+    card.className = "sec-card" + (active === sec.id ? " active" : "");
+    card.innerHTML = `
+      <div class="sec-left">
+        <div class="sec-name">${sec.name}</div>
+        <div class="sec-count">${count} منتج</div>
+      </div>
+      <div class="sec-ico"><i class="fas ${sectionIcon(sec.id)}"></i></div>
+    `;
+    card.onclick = () => { active = sec.id; sync(); scrollToMenuTop(); };
+    sectionsGrid.appendChild(card);
   });
+
+  // section count label (mobile header)
+  secCount.textContent = String(MENU_DATA.length);
 }
 
 function sortItems(items){
@@ -1183,6 +1199,7 @@ function render(){
 
     const wrap = document.createElement("div");
     wrap.className = "section";
+    wrap.id = "sec-" + sec.id;
 
     const head = document.createElement("div");
     head.className = "section-head";
@@ -1208,7 +1225,6 @@ function render(){
       const imgUrl = safeImg(i.img);
       thumb.style.backgroundImage = `url('${imgUrl}')`;
 
-      // preload to detect broken images & fallback
       const pre = new Image();
       pre.onerror = () => { thumb.style.backgroundImage = `url('${PLACEHOLDER_IMG}')`; };
       pre.src = imgUrl;
@@ -1276,7 +1292,7 @@ function closeModal(){
 let t = null;
 q.addEventListener("input", () => {
   clearTimeout(t);
-  t = setTimeout(() => { render(); updateStats(); }, 160);
+  t = setTimeout(() => { render(); updateStats(); buildChipsAndMobileSections(); }, 160);
 });
 
 sortSel.addEventListener("change", () => { render(); });
@@ -1286,6 +1302,7 @@ document.getElementById("btnAll").onclick = () => {
   q.value = "";
   sortSel.value = "default";
   sync();
+  scrollToMenuTop();
 };
 
 document.addEventListener("keydown", (e) => {
@@ -1308,13 +1325,24 @@ function updateStats(){
   statItems.textContent = items;
 }
 
+function scrollToMenuTop(){
+  // نزّل المستخدم لبداية القائمة بشكل لطيف بعد اختيار قسم
+  const hero = document.querySelector(".hero");
+  const y = hero ? (hero.getBoundingClientRect().bottom + window.scrollY + 8) : 0;
+  window.scrollTo({ top: y, behavior: "smooth" });
+}
+
 function sync(){
-  buildChips();
-  buildCategoryGrid();
+  buildChipsAndMobileSections();
   render();
   updateStats();
 }
 
+/* WhatsApp: رابط مباشر (داخل المربع الأخضر) */
+const waBtn = document.getElementById("waBtn");
+waBtn.href = "https://wa.me/" + WHATSAPP_PHONE;
+
+/* Up button */
 document.getElementById("upBtn").onclick = () => {
   window.scrollTo({top:0, behavior:"smooth"});
 };
