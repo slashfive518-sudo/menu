@@ -54,7 +54,7 @@
       overflow-x:hidden;
     }
     a{ text-decoration:none; color:inherit; }
-    button, input{ font-family:inherit; }
+    button, input, select{ font-family:inherit; }
     ::selection{ background: rgba(217,177,95,.28); }
 
     /* Subtle animated lux background */
@@ -364,6 +364,83 @@
     }
     .hint i{ color: var(--gold2); }
 
+    /* ===== Categories Grid (Mobile friendly) ===== */
+    .categories{
+      margin-top:16px;
+      border-radius: var(--radius);
+      border:1px solid var(--border2);
+      background: rgba(255,255,255,.02);
+      box-shadow: var(--shadow2);
+      overflow:hidden;
+    }
+    .categories-head{
+      padding:14px 16px;
+      border-bottom:1px solid rgba(255,215,128,.08);
+      background: linear-gradient(180deg, rgba(255,255,255,.03), rgba(0,0,0,.10));
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+    }
+    .categories-head .t{
+      font-weight:1000;
+      color: var(--text);
+      display:flex;
+      align-items:center;
+      gap:10px;
+    }
+    .categories-head .t i{ color: var(--gold2); }
+
+    .category-grid{
+      display:grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap:12px;
+      padding:14px;
+    }
+    .cat{
+      border:1px solid rgba(255,215,128,.14);
+      background: linear-gradient(180deg, rgba(255,255,255,.03), rgba(0,0,0,.22));
+      border-radius:16px;
+      padding:14px 12px;
+      cursor:pointer;
+      transition: var(--transition);
+      text-align:center;
+      position:relative;
+      overflow:hidden;
+    }
+    .cat:hover{
+      transform: translateY(-3px);
+      border-color: rgba(217,177,95,.55);
+      box-shadow: 0 14px 30px rgba(0,0,0,.55);
+    }
+    .cat.active{
+      border-color: rgba(217,177,95,.75);
+      box-shadow: 0 0 0 3px rgba(217,177,95,.10), 0 12px 26px rgba(217,177,95,.12);
+    }
+    .cat .icon{
+      width:46px; height:46px;
+      margin:0 auto 10px;
+      border-radius:14px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      background: rgba(217,177,95,.12);
+      border:1px solid rgba(217,177,95,.22);
+    }
+    .cat .icon i{ color: var(--gold2); font-size:18px; }
+    .cat .name{
+      font-weight:1000;
+      font-size:14px;
+      color: var(--text);
+      line-height:1.25;
+    }
+    .cat .sub{
+      margin-top:6px;
+      font-size:12px;
+      font-weight:900;
+      color: var(--muted);
+    }
+
     /* ===== Sections & cards ===== */
     .grid{ margin-top:12px; }
     .section{
@@ -631,10 +708,10 @@
       color: var(--gold2);
     }
 
-    /* Floating WhatsApp button */
+    /* Floating buttons (fixed for RTL: right) */
     .fab{
       position:fixed;
-      left:18px;
+      right:18px;
       bottom:18px;
       z-index:2500;
       display:flex;
@@ -672,6 +749,10 @@
       .hero-inner{ grid-template-columns: 1fr; }
       .modal-grid{ grid-template-columns: 1fr; }
       .modal-image{ height:260px; }
+      .category-grid{ grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    }
+    @media(max-width:560px){
+      .category-grid{ grid-template-columns: repeat(2, minmax(0, 1fr)); }
     }
     @media(max-width:480px){
       .topbar .wrap{ padding:12px 14px; }
@@ -679,35 +760,36 @@
       .actions{ width:100%; }
       .actions .btn{ flex:1; justify-content:center; }
       .cards{ grid-template-columns: 1fr; }
-      .fab{ left:14px; bottom:14px; }
+      .fab{ right:14px; bottom:14px; }
     }
-  /* ===== Mobile-first enhancements ===== */
-  @media (hover: none) {
-    .card:hover { transform: none; box-shadow: var(--shadow2); }
-    .btn:hover, .chip:hover { transform: none; }
-  }
 
-  @media (max-width: 520px){
-    .wrap{ padding:14px; }
-    .hero-inner{ padding:16px; }
-    .chips-wrap{ padding:0 16px 14px; }
+    /* ===== Mobile-first enhancements ===== */
+    @media (hover: none) {
+      .card:hover { transform: none; box-shadow: var(--shadow2); }
+      .btn:hover, .chip:hover { transform: none; }
+    }
 
-    .search{ padding:12px 14px; border-radius:14px; }
-    .search input{ font-size:16px; }
+    @media (max-width: 520px){
+      .wrap{ padding:14px; }
+      .hero-inner{ padding:16px; }
+      .chips-wrap{ padding:0 16px 14px; }
 
-    .actions{ gap:10px; }
-    .actions .btn{ padding:12px 14px; border-radius:14px; }
+      .search{ padding:12px 14px; border-radius:14px; }
+      .search input{ font-size:16px; }
 
-    .cards{ padding:14px; gap:14px; }
-    .thumb{ height:170px; }
-    .content{ padding:14px; }
+      .actions{ gap:10px; }
+      .actions .btn{ padding:12px 14px; border-radius:14px; }
 
-    .modal-body{ padding:14px; }
-    .modal-image{ height:240px; }
-  }
+      .cards{ padding:14px; gap:14px; }
+      .thumb{ height:170px; }
+      .content{ padding:14px; }
 
-  .card, .btn, .chip { touch-action: manipulation; }
-</style>
+      .modal-body{ padding:14px; }
+      .modal-image{ height:240px; }
+    }
+
+    .card, .btn, .chip, .cat { touch-action: manipulation; }
+  </style>
 </head>
 
 <body>
@@ -771,6 +853,15 @@
       </div>
     </section>
 
+    <!-- NEW: Mobile friendly category grid -->
+    <section class="categories" aria-label="categories">
+      <div class="categories-head">
+        <div class="t"><i class="fas fa-layer-group"></i><span>الأقسام</span></div>
+        <div class="count" id="catCount">—</div>
+      </div>
+      <div class="category-grid" id="catGrid"></div>
+    </section>
+
     <div id="menuRoot" class="grid"></div>
 
     <div id="emptyState" class="empty">
@@ -808,8 +899,11 @@
 
   <!-- Floating buttons -->
   <div class="fab" aria-label="floating actions">
-    <!-- WhatsApp: غير الرقم هنا -->
-    <a class="wa" id="waBtn" href="#" target="_blank" rel="noopener" title="اطلب عبر واتساب">
+    <!-- WhatsApp: رقم صحيح + رابط مباشر -->
+    <a class="wa" id="waBtn"
+       href="https://wa.me/966556843469"
+       target="_blank" rel="noopener"
+       title="اطلب عبر واتساب">
       <i class="fab fa-whatsapp"></i>
     </a>
     <button class="up" id="upBtn" type="button" title="أعلى الصفحة">
@@ -821,12 +915,11 @@
 /* ======================================
    UNIQUE LUX MENU (Single File)
    - Search + Chips + Sorting + Modal
-   - Placeholder images
-   - WhatsApp floating
+   - NEW: Category Grid for mobile
+   - WhatsApp fixed (direct link)
 ====================================== */
 
 const PLACEHOLDER_IMG = "images/placeholder.jpg"; // ضع صورة هنا إن أردت
-const WHATSAPP_PHONE  = "966556843469"; // غيّر الرقم (بدون +)
 
 const MENU_DATA = [
   {
@@ -969,6 +1062,10 @@ const mBadge = document.getElementById("mBadge");
 const statItems = document.getElementById("statItems");
 const statSections = document.getElementById("statSections");
 
+/* NEW: category grid */
+const catGrid = document.getElementById("catGrid");
+const catCount = document.getElementById("catCount");
+
 let active = "all";
 
 function norm(s){ return String(s || "").toLowerCase().trim(); }
@@ -980,6 +1077,66 @@ function matches(item, query){
 function safeImg(img){
   const s = String(img || "").trim();
   return s ? s : PLACEHOLDER_IMG;
+}
+
+/* Icons per section id */
+function catIconById(id){
+  const map = {
+    "coffee": "fa-mug-hot",
+    "coffee-cold": "fa-glass-water",
+    "cold": "fa-snowflake",
+    "smoothie": "fa-blender",
+    "tea": "fa-leaf",
+    "desserts": "fa-cookie-bite"
+  };
+  return map[id] || "fa-star";
+}
+
+function buildCategoryGrid(){
+  if(!catGrid) return;
+  catGrid.innerHTML = "";
+
+  const totalAll = MENU_DATA.reduce((n,s)=> n + ((s.items||[]).length), 0);
+
+  // All
+  const allBtn = document.createElement("button");
+  allBtn.type = "button";
+  allBtn.className = "cat" + (active === "all" ? " active" : "");
+  allBtn.innerHTML = `
+    <div class="icon"><i class="fas fa-layer-group"></i></div>
+    <div class="name">الكل</div>
+    <div class="sub">${totalAll} منتج</div>
+  `;
+  allBtn.onclick = () => {
+    active = "all";
+    q.value = "";
+    sortSel.value = "default";
+    sync();
+    const top = document.getElementById("menuRoot").offsetTop - 90;
+    window.scrollTo({ top, behavior:"smooth" });
+  };
+  catGrid.appendChild(allBtn);
+
+  MENU_DATA.forEach(sec => {
+    const total = (sec.items || []).length;
+    const b = document.createElement("button");
+    b.type = "button";
+    b.className = "cat" + (active === sec.id ? " active" : "");
+    b.innerHTML = `
+      <div class="icon"><i class="fas ${catIconById(sec.id)}"></i></div>
+      <div class="name">${sec.name}</div>
+      <div class="sub">${total} منتج</div>
+    `;
+    b.onclick = () => {
+      active = sec.id;
+      sync();
+      const top = document.getElementById("menuRoot").offsetTop - 90;
+      window.scrollTo({ top, behavior:"smooth" });
+    };
+    catGrid.appendChild(b);
+  });
+
+  if(catCount) catCount.textContent = `${MENU_DATA.length} قسم`;
 }
 
 function buildChips(){
@@ -1153,19 +1310,10 @@ function updateStats(){
 
 function sync(){
   buildChips();
+  buildCategoryGrid();
   render();
   updateStats();
 }
-
-const waBtn = document.getElementById("waBtn");
-
-waBtn.addEventListener("click", function (e) {
-  e.preventDefault();
-
-  // بدون رسالة = المستخدم يكتب بنفسه
-  window.location.href = "https://wa.me/966556843469";
-});
-
 
 document.getElementById("upBtn").onclick = () => {
   window.scrollTo({top:0, behavior:"smooth"});
