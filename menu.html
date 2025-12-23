@@ -57,7 +57,6 @@
     button, input, select{ font-family:inherit; }
     ::selection{ background: rgba(217,177,95,.28); }
 
-    /* Subtle animated lux background */
     .lux-bg{
       position:fixed;
       inset:-80px;
@@ -93,7 +92,6 @@
 
     .wrap{ max-width:1200px; margin:0 auto; padding:20px; }
 
-    /* ===== Topbar ===== */
     .topbar{
       position:sticky; top:0; z-index:1200;
       background: rgba(5,5,6,.78);
@@ -220,7 +218,6 @@
       background: rgba(255,255,255,.06);
     }
 
-    /* ===== Hero ===== */
     .hero{
       margin-top:22px;
       border-radius: var(--radius);
@@ -289,7 +286,6 @@
     .stat i{ color: var(--gold2); }
     .stat b{ color: var(--text); }
 
-    /* ===== Chips bar (Desktop) ===== */
     .chips-wrap{
       padding:0 22px 16px;
       position:relative;
@@ -363,14 +359,13 @@
       box-shadow: 0 10px 22px rgba(217,177,95,.14);
     }
 
-    /* ===== NEW: Mobile Sections Grid (better for phone) ===== */
     .sections-panel{
       margin-top:14px;
       border-radius: var(--radius);
       border:1px solid var(--border2);
       background: rgba(255,255,255,.02);
       overflow:hidden;
-      display:none; /* يظهر على الموبايل */
+      display:none;
     }
     .sections-head{
       padding:14px 16px;
@@ -419,18 +414,18 @@
       min-width:0;
     }
     .sec-name{
-  font-weight:1000;
-  font-size:14px;
-  color: var(--text);
-  line-height:1.25;
+      font-weight:1000;
+      font-size:14px;
+      color: var(--text);
+      line-height:1.25;
 
-  display:-webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  overflow:hidden;
+      display:-webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow:hidden;
 
-  word-break: break-word;
-}
+      word-break: break-word;
+    }
     .sec-count{
       font-weight:900;
       font-size:12px;
@@ -457,7 +452,6 @@
       background: linear-gradient(135deg, rgba(217,177,95,.22), rgba(241,210,138,.12));
     }
 
-    /* ===== Sections & cards ===== */
     .grid{ margin-top:12px; }
     .section{
       margin-top:26px;
@@ -559,19 +553,13 @@
       display:flex;
       flex-direction:column;
       gap:10px;
-      min-height: 150px;
+      min-height: 110px; /* أقل لأننا حذفنا الوصف */
     }
     .title{
       font-size:17px;
       font-weight:1000;
       color: var(--text);
       line-height:1.4;
-    }
-    .desc{
-      color: var(--muted);
-      font-size:14px;
-      line-height:1.75;
-      min-height: 48px;
     }
     .meta{
       margin-top:auto;
@@ -610,7 +598,6 @@
       text-overflow: ellipsis;
     }
 
-    /* ===== Empty ===== */
     .empty{
       text-align:center;
       margin:28px 0 40px;
@@ -632,7 +619,6 @@
     }
     .empty p{ color: var(--muted); line-height:1.8; max-width:560px; margin:0 auto; }
 
-    /* ===== Modal ===== */
     .modal-backdrop{
       position:fixed; inset:0;
       background: rgba(0,0,0,.90);
@@ -653,9 +639,7 @@
       transform: translateY(10px) scale(.98);
       animation: pop 220ms ease forwards;
     }
-    @keyframes pop{
-      to{ transform: translateY(0) scale(1); }
-    }
+    @keyframes pop{ to{ transform: translateY(0) scale(1); } }
     .modal-top{
       display:flex;
       align-items:center;
@@ -689,12 +673,6 @@
       gap:16px;
       align-items:start;
     }
-    .modal-desc{
-      color: var(--muted);
-      line-height:1.95;
-      font-size:16px;
-      padding:10px 2px;
-    }
     .modal-side{
       border-radius: var(--radius2);
       border:1px solid rgba(255,215,128,.14);
@@ -713,6 +691,7 @@
       color: var(--muted);
       font-weight:900;
       margin-bottom:12px;
+      line-height:1.8;
     }
     .m-badge{
       text-align:center;
@@ -724,7 +703,6 @@
       color: var(--gold2);
     }
 
-    /* ===== FIX: WhatsApp inside GREEN BOX (bottom-right) ===== */
     .float-stack{
       position:fixed;
       right:18px;
@@ -757,10 +735,7 @@
       cursor:pointer;
       transition: var(--transition);
     }
-    .wa-box a:hover{
-      transform: translateY(-2px);
-      filter: brightness(1.05);
-    }
+    .wa-box a:hover{ transform: translateY(-2px); filter: brightness(1.05); }
     .wa-box i{
       font-size:26px;
       color:#25D366;
@@ -781,13 +756,9 @@
       box-shadow: var(--shadow2);
       transition: var(--transition);
     }
-    .up-btn:hover{
-      transform: translateY(-2px);
-      border-color: rgba(217,177,95,.60);
-    }
+    .up-btn:hover{ transform: translateY(-2px); border-color: rgba(217,177,95,.60); }
     .up-btn i{ font-size:18px; color: var(--gold2); }
 
-    /* Responsive */
     @media(max-width:900px){
       .topbar .wrap{ flex-wrap:wrap; }
       .search-container{ order:3; max-width:100%; min-width:100%; }
@@ -807,7 +778,6 @@
       .actions .btn{ flex:1; justify-content:center; padding:12px 14px; border-radius:14px; }
       .select{ flex:1; }
 
-      /* Mobile sections grid ON, chips OFF */
       .sections-panel{ display:block; }
       .chips{ display:none; }
 
@@ -821,7 +791,6 @@
       .float-stack{ right:14px; bottom:14px; }
     }
 
-    /* Mobile-first enhancements */
     @media (hover: none) {
       .card:hover { transform: none; box-shadow: var(--shadow2); }
       .btn:hover, .chip:hover, .sec-card:hover { transform: none; }
@@ -851,7 +820,7 @@
       <div class="search-container">
         <div class="search">
           <i class="fas fa-magnifying-glass"></i>
-          <input id="q" placeholder="ابحث عن منتج، نكهة، وصف..." autocomplete="off" />
+          <input id="q" placeholder="ابحث عن منتج أو نكهة..." autocomplete="off" />
         </div>
       </div>
 
@@ -889,10 +858,8 @@
           <div class="hint"><i class="fas fa-filter"></i> اختر قسم أو استخدم البحث والفرز</div>
         </div>
 
-        <!-- Desktop: chips -->
         <div class="chips" id="chips"></div>
 
-        <!-- Mobile: better sections layout -->
         <div class="sections-panel" aria-label="sections panel">
           <div class="sections-head">
             <div class="title"><i class="fas fa-layer-group"></i> الأقسام</div>
@@ -912,7 +879,6 @@
     </div>
   </main>
 
-  <!-- Modal -->
   <div class="modal-backdrop" id="modal" aria-hidden="true">
     <div class="modal" role="dialog" aria-modal="true">
       <div class="modal-top">
@@ -925,9 +891,7 @@
       <div class="modal-body">
         <img id="mImg" class="modal-image" alt="صورة المنتج" />
         <div class="modal-grid">
-          <div>
-            <p id="mDesc" class="modal-desc"></p>
-          </div>
+          <div style="display:none"></div><!-- removed description column -->
           <div class="modal-side">
             <div class="m-price" id="mPrice"></div>
             <div class="m-tag" id="mTag"></div>
@@ -938,7 +902,6 @@
     </div>
   </div>
 
-  <!-- Floating (bottom-right): WhatsApp inside green box + Up -->
   <div class="float-stack" aria-label="floating actions">
     <div class="wa-box" aria-label="WhatsApp box">
       <a id="waBtn" href="https://wa.me/966556843469" target="_blank" rel="noopener" title="اطلب عبر واتساب">
@@ -951,142 +914,136 @@
   </div>
 
 <script>
-/* ======================================
-   UNIQUE LUX MENU (Single File)
-   - Search + Chips (Desktop) + Sections Grid (Mobile)
-   - Sorting + Modal
-   - WhatsApp fixed (inside green box)
-====================================== */
-
-const PLACEHOLDER_IMG = "images/placeholder.jpg"; // ضع صورة هنا إن أردت
-const WHATSAPP_PHONE  = "966556843469"; // غيّر الرقم (بدون +)
+const PLACEHOLDER_IMG = "images/placeholder.jpg";
+const WHATSAPP_PHONE  = "966556843469";
 
 const MENU_DATA = [
   {
     id:"coffee",
     name:"قهوة ساخنة",
     items:[
-      {name:"أمريكانو",price:9,desc:"قهوة غنية ومتوازنة بطابع كلاسيكي.",tag:"Hot",badge:"الأكثر طلبًا",img:"images/Americano-hot.jpg"},
-      {name:"كابتشينو",price:12,desc:"إسبريسو مع رغوة حليب كثيفة وملمس كريمي.",tag:"Hot",badge:"كلاسيك",img:"images/cappuccino.jpg"},
-      {name:"لاتية كلاسيك",price:12,desc:"إسبريسو مع حليب مبخّر ناعم.",tag:"Hot",badge:"مميز",img:"images/latte.jpg"},
-      {name:"كولمبي او اثيـوبي في60",price:12,desc:"تقطير V60 بنكهة واضحة وعطرية.",tag:"Hot",badge:"V60",img:"images/colombia.png"},
-      {name:"كورتادو",price:11,desc:"توازن بين الإسبريسو والحليب بنسبة مثالية.",tag:"Hot",badge:"ناعم",img:"images/كورتادو.png"},
-      {name:"اسبريسو دبل",price:10,desc:"جرعة مركزة لمحبي النكهة القوية.",tag:"Hot",badge:"قوي",img:"images/esbrso_duble.png"},
-      {name:"فلات وايت",price:11,desc:"قهوة ناعمة بحليب مخملي.",tag:"Hot",badge:"مفضل",img:"images/flat_white.jpg"},
-      {name:"لاتيه -فلافور- كراميل- فانيليا",price:13,desc:"لاتيه مع نكهة اختيارية لذوق مختلف.",tag:"Hot",badge:"فلافور",img:"images/lateha.jfif"},
-      {name:"مكياتو",price:11,desc:"إسبريسو بلمسة حليب بسيطة.",tag:"Hot",badge:"مركز",img:"images/ميكاتو.png"},
-      {name:"موكا",price:13,desc:"إسبريسو مع شوكولاتة ولمسة كريمة.",tag:"Hot",badge:"شوكولاتة",img:"images/hot-mocha.jpg"},
-      {name:"اسبريسو سنقل",price:8,desc:"جرعة كلاسيكية بطابع غني.",tag:"Hot",badge:"سنقل",img:"images/espresso.jpg"},
-      {name:"سبانش لاتيه حار",price:13,desc:"سبانش لاتيه بطعم حلو ومتوازن.",tag:"Hot",badge:"سبانش",img:"images/spanish-latte-square.jpg"},
-      {name:"قهوة اليوم حار",price:6,desc:"اختيار اليوم من تحميصنا.",tag:"Hot",badge:"Daily",img:"images/mocha.jpg"},
-      {name:"تركي- ساده-محوج - فاتح او غامق",price:10,desc:"قهوة تركية حسب اختيارك.",tag:"Hot",badge:"تركي",img:"images/mocha.jpg"},
-            {name:"قهوة فرنساوي",price:12,desc:"قهوة بالحليب.",tag:"Hot",badge:"تركي",img:"images/قهوة فرنساوي.jpg"},
-            {name:"هوت شوكلت",price:12,desc:"حليب مع سكر مع شوكولاتة مذابة مع فانيليا أو قرفة (اختياري).",tag:"Hot",badge:"تركي",img:"images/هوت شوكلت.jfif"},
-      {name:"دله قهوه عربي",price:20,desc:"لزعفران والهيل.",tag:"Hot",badge:"تركي",img:"images/دله قهوه عربي.jpg"},
-            {name:"كوب قهوه عربي",price:7,desc:"لزعفران والهيل.",tag:"Hot",badge:"تركي",img:"images/قهوه عربي.jfif"},
-           {name:"نسكافيه",price:10,desc:"مشروب سريع بطابع دافئ.",tag:"Hot",badge:"سريع",img:"images/mocha.jpg"}
+      {name:"أمريكانو",price:9,tag:"Hot",badge:"الأكثر طلبًا",img:"images/Americano-hot.jpg"},
+      {name:"كابتشينو",price:12,tag:"Hot",badge:"كلاسيك",img:"images/cappuccino.jpg"},
+      {name:"لاتية كلاسيك",price:12,tag:"Hot",badge:"مميز",img:"images/latte.jpg"},
+      {name:"كولمبي او اثيـوبي في60",price:12,tag:"Hot",badge:"V60",img:"images/colombia.png"},
+      {name:"كورتادو",price:11,tag:"Hot",badge:"ناعم",img:"images/كورتادو.png"},
+      {name:"اسبريسو دبل",price:10,tag:"Hot",badge:"قوي",img:"images/esbrso_duble.png"},
+      {name:"فلات وايت",price:11,tag:"Hot",badge:"مفضل",img:"images/flat_white.jpg"},
+      {name:"لاتيه -فلافور- كراميل- فانيليا",price:13,tag:"Hot",badge:"فلافور",img:"images/lateha.jfif"},
+      {name:"مكياتو",price:11,tag:"Hot",badge:"مركز",img:"images/ميكاتو.png"},
+      {name:"موكا",price:13,tag:"Hot",badge:"شوكولاتة",img:"images/hot-mocha.jpg"},
+      {name:"اسبريسو سنقل",price:8,tag:"Hot",badge:"سنقل",img:"images/espresso.jpg"},
+      {name:"سبانش لاتيه حار",price:13,tag:"Hot",badge:"سبانش",img:"images/spanish-latte-square.jpg"},
+      {name:"قهوة اليوم حار",price:6,tag:"Hot",badge:"Daily",img:"images/mocha.jpg"},
+      {name:"تركي- ساده-محوج - فاتح او غامق",price:10,tag:"Hot",badge:"تركي",img:"images/mocha.jpg"},
+      {name:"قهوة فرنساوي",price:12,tag:"Hot",badge:"تركي",img:"images/قهوة فرنساوي.jpg"},
+      {name:"هوت شوكلت",price:12,tag:"Hot",badge:"الأكثر طلبًا",img:"images/هوت شوكلت.jfif"},
+      {name:"دله قهوه عربي",price:20,tag:"Hot",badge:"تركي",img:"images/دله قهوه عربي.jpg"},
+      {name:"كوب قهوه عربي",price:7,tag:"Hot",badge:"تركي",img:"images/قهوه عربي.jfif"},
+      {name:"نسكافيه",price:10,tag:"Hot",badge:"سريع",img:"images/mocha.jpg"}
     ]
   },
   {
     id:"coffee-cold",
     name:"قهوة باردة",
     items:[
-      {name:"امريكانو",price:10,desc:"امريكانو بارد منعش.",tag:"Cold Coffee",badge:"منعش",img:"images/latte.jpg"},
-      {name:"ايس لاتيه كلاسيك",price:13,desc:"آيس لاتيه كلاسيك مع ثلج.",tag:"Cold Coffee",badge:"كلاسيك",img:"images/cappuccino.jpg"},
-      {name:"كولومبي او اثيوبي في60",price:14,desc:"V60 بارد بطابع عطري.",tag:"Cold Coffee",badge:"V60",img:"images/latte.jpg"},
-      {name:"فرابتشينوا",price:14,desc:"قهوة مخفوقة باردة.",tag:"Cold Coffee",badge:"فروستي",img:"images/espresso.jpg"},
-      {name:"ايس لاتيه -فلافور - كراميل -فانيليا-بلو-فروله-فستق",price:16,desc:"آيس لاتيه بنكهات متعددة.",tag:"Cold Coffee",badge:"فلافور",img:"images/mocha.jpg"},
-      {name:"ايس لاتيه تراميسو",price:15,desc:"طابع تراميسو بارد.",tag:"Cold Coffee",badge:"تراميسو",img:"images/mocha.jpg"},
-      {name:"ايس مكياتو",price:14,desc:"آيس مكياتو بنكهة مركزة.",tag:"Cold Coffee",badge:"مركز",img:"images/mocha.jpg"},
-      {name:"ايس موكا",price:15,desc:"آيس موكا بطعم شوكولاتة.",tag:"Cold Coffee",badge:"شوكولاتة",img:"images/mocha.jpg"},
-      {name:"ايس بستاشيو لاتيه",price:16,desc:"فستق لاتيه بارد.",tag:"Cold Coffee",badge:"فستق",img:"images/mocha.jpg"},
-      {name:"ايس اسبنش لاتيه",price:15,desc:"سبانش لاتيه بارد.",tag:"Cold Coffee",badge:"سبانش",img:"images/mocha.jpg"},
-      {name:"لاتيه كندر",price:15,desc:"لاتيه بطابع كندر.",tag:"Cold Coffee",badge:"حلو",img:"images/mocha.jpg"},
-      {name:"قهوة اليوم",price:7,desc:"اختيار اليوم بنسخة باردة.",tag:"Cold Coffee",badge:"Daily",img:"images/mocha.jpg"}
+      {name:"امريكانو",price:10,tag:"Cold Coffee",badge:"منعش",img:"images/latte.jpg"},
+      {name:"ايس لاتيه كلاسيك",price:13,tag:"Cold Coffee",badge:"كلاسيك",img:"images/cappuccino.jpg"},
+      {name:"كولومبي او اثيوبي في60",price:14,tag:"Cold Coffee",badge:"V60",img:"images/latte.jpg"},
+      {name:"فرابتشينوا",price:14,tag:"Cold Coffee",badge:"فروستي",img:"images/espresso.jpg"},
+      {name:"ايس لاتيه -فلافور - كراميل -فانيليا-بلو-فروله-فستق",price:16,tag:"Cold Coffee",badge:"فلافور",img:"images/mocha.jpg"},
+      {name:"ايس لاتيه تراميسو",price:15,tag:"Cold Coffee",badge:"تراميسو",img:"images/mocha.jpg"},
+      {name:"ايس مكياتو",price:14,tag:"Cold Coffee",badge:"مركز",img:"images/mocha.jpg"},
+      {name:"ايس موكا",price:15,tag:"Cold Coffee",badge:"شوكولاتة",img:"images/mocha.jpg"},
+      {name:"ايس بستاشيو لاتيه",price:16,tag:"Cold Coffee",badge:"فستق",img:"images/mocha.jpg"},
+      {name:"ايس اسبنش لاتيه",price:15,tag:"Cold Coffee",badge:"سبانش",img:"images/mocha.jpg"},
+      {name:"لاتيه كندر",price:15,tag:"Cold Coffee",badge:"حلو",img:"images/mocha.jpg"},
+      {name:"قهوة اليوم",price:7,tag:"Cold Coffee",badge:"Daily",img:"images/mocha.jpg"}
     ]
   },
   {
     id:"cold",
     name:"مشروبات باردة",
     items:[
-      {name:"افوكادو مانجو",price:18,desc:"مزيج أفوكادو ومانجو منعش.",tag:"Cold",badge:"Fresh",img:"images/iced-latte.jpg"},
-      {name:"بيناكولادا- اناناس-جوز هند-حليب",price:18,desc:"أناناس وجوز هند بحليب.",tag:"Cold",badge:"Tropical",img:"images/iced-latte.jpg"},
-      {name:"بينكمون - فروله-مانجو- حليب",price:18,desc:"مزيج فواكه بحليب.",tag:"Cold",badge:"Signature",img:"images/iced-latte.jpg"},
-      {name:"سجنتشر فايف سلاش",price:20,desc:"مشروب التوقيع الخاص.",tag:"Cold",badge:"Signature",img:"images/iced-latte.jpg"},
-      {name:"فروت سلاط",price:25,desc:"فاكهة متنوعة بطابع فاخر.",tag:"Cold",badge:"Premium",img:"images/iced-latte.jpg"},
-      {name:"فته اوريو",price:18,desc:"أوريو بلمسة باردة.",tag:"Cold",badge:"Oreo",img:"images/iced-latte.jpg"},
-      {name:"ميلك شيك اوريو",price:15,desc:"ميلك شيك أوريو كريمي.",tag:"Cold",badge:"Milkshake",img:"images/iced-latte.jpg"},
-      {name:"برتقال",price:14,desc:"عصير برتقال منعش.",tag:"Cold",badge:"Natural",img:"images/iced-latte.jpg"},
-      {name:"افوكادو -عسل-مكسرات",price:16,desc:"أفوكادو مع عسل ومكسرات.",tag:"Cold",badge:"Energy",img:"images/mojito.jpg"},
-      {name:"افوكادو كلاسيك",price:14,desc:"أفوكادو كلاسيك.",tag:"Cold",badge:"Classic",img:"images/frappuccino.jpg"},
-      {name:"جوافه",price:14,desc:"عصير جوافة طبيعي.",tag:"Cold",badge:"Natural",img:"images/iced-tea.jpg"},
-      {name:"كركديه  بارد",price:15,desc:"كركديه بارد منعش.",tag:"Cold",badge:"Herbal",img:"images/iced-tea.jpg"},
-      {name:"كيوي",price:14,desc:"عصير كيوي.",tag:"Cold",badge:"Fruit",img:"images/iced-tea.jpg"},
-            {name:"موهيتو كودرد",price:16,desc:"كودرد مع سفن أب مع شرائح ليمون مع نعناع وثلج.",tag:"Cold",badge:"Fruit",img:"images/موهيتو كودرد.png"},
-      {name:"مانجو",price:14,desc:"عصير مانجو.",tag:"Cold",badge:"Fruit",img:"images/iced-tea.jpg"},
-      {name:"اناناس",price:14,desc:"عصير أناناس.",tag:"Cold",badge:"Fruit",img:"images/iced-tea.jpg"},
-      {name:"فراوله",price:14,desc:"عصير فراولة.",tag:"Cold",badge:"Fruit",img:"images/iced-tea.jpg"},
-      {name:"بطيخ",price:14,desc:"عصير بطيخ.",tag:"Cold",badge:"Fruit",img:"images/iced-tea.jpg"},
-      {name:"اوريو",price:14,desc:"مشروب أوريو.",tag:"Cold",badge:"Oreo",img:"images/iced-tea.jpg"},
-      {name:"موز",price:14,desc:"موز بارد.",tag:"Cold",badge:"Fruit",img:"images/iced-tea.jpg"},
-      {name:"بارد",price:8,desc:"مشروب بارد بسيط.",tag:"Cold",badge:"Simple",img:"images/iced-tea.jpg"}
+      {name:"افوكادو مانجو",price:18,tag:"Cold",badge:"Fresh",img:"images/iced-latte.jpg"},
+      {name:"بيناكولادا- اناناس-جوز هند-حليب",price:18,tag:"Cold",badge:"Tropical",img:"images/iced-latte.jpg"},
+      {name:"بينكمون - فروله-مانجو- حليب",price:18,tag:"Cold",badge:"Signature",img:"images/iced-latte.jpg"},
+      {name:"سجنتشر فايف سلاش",price:20,tag:"Cold",badge:"Signature",img:"images/iced-latte.jpg"},
+      {name:"فروت سلاط",price:25,tag:"Cold",badge:"Premium",img:"images/iced-latte.jpg"},
+      {name:"فته اوريو",price:18,tag:"Cold",badge:"Oreo",img:"images/iced-latte.jpg"},
+      {name:"ميلك شيك اوريو",price:15,tag:"Cold",badge:"Milkshake",img:"images/iced-latte.jpg"},
+      {name:"برتقال",price:14,tag:"Cold",badge:"Natural",img:"images/iced-latte.jpg"},
+      {name:"افوكادو -عسل-مكسرات",price:16,tag:"Cold",badge:"Energy",img:"images/mojito.jpg"},
+      {name:"افوكادو كلاسيك",price:14,tag:"Cold",badge:"Classic",img:"images/frappuccino.jpg"},
+      {name:"جوافه",price:14,tag:"Cold",badge:"Natural",img:"images/iced-tea.jpg"},
+      {name:"كركديه  بارد",price:15,tag:"Cold",badge:"Herbal",img:"images/iced-tea.jpg"},
+      {name:"كيوي",price:14,tag:"Cold",badge:"Fruit",img:"images/iced-tea.jpg"},
+      {name:"موهيتو كودرد",price:16,tag:"Cold",badge:"Fruit",img:"images/موهيتو كودرد.png"},
+      {name:"مانجو",price:14,tag:"Cold",badge:"Fruit",img:"images/iced-tea.jpg"},
+      {name:"اناناس",price:14,tag:"Cold",badge:"Fruit",img:"images/iced-tea.jpg"},
+      {name:"فراوله",price:14,tag:"Cold",badge:"Fruit",img:"images/iced-tea.jpg"},
+      {name:"بطيخ",price:14,tag:"Cold",badge:"Fruit",img:"images/iced-tea.jpg"},
+      {name:"اوريو",price:14,tag:"Cold",badge:"Oreo",img:"images/iced-tea.jpg"},
+      {name:"موز",price:14,tag:"Cold",badge:"Fruit",img:"images/iced-tea.jpg"},
+      {name:"بارد",price:8,tag:"Cold",badge:"Simple",img:"images/iced-tea.jpg"}
     ]
   },
   {
     id:"smoothie",
     name:"سموذي",
     items:[
-      {name:"موهيتو كلاسيك",price:12,desc:"موهيتو كلاسيك منعش.",tag:"Smoothie",badge:"Mint",img:"images/iced-latte.jpg"},
-      {name:"سموذي جوافه",price:16,desc:"سموذي جوافة.",tag:"Smoothie",badge:"Guava",img:"images/mojito.jpg"},
-      {name:"سموذي مانجو",price:16,desc:"سموذي مانجو.",tag:"Smoothie",badge:"Mango",img:"images/frappuccino.jpg"},
-      {name:"موهيتو -نكهه",price:14,desc:"موهيتو بنكهة اختيارية.",tag:"Smoothie",badge:"Flavor",img:"images/iced-tea.jpg"},
-      {name:"سموذي برتقال",price:16,desc:"سموذي برتقال.",tag:"Smoothie",badge:"Orange",img:"images/iced-tea.jpg"},
-      {name:"سموذي اناناس",price:16,desc:"سموذي أناناس.",tag:"Smoothie",badge:"Pineapple",img:"images/iced-tea.jpg"},
-      {name:"سموذي فراوله",price:16,desc:"سموذي فراولة.",tag:"Smoothie",badge:"Strawberry",img:"images/iced-tea.jpg"},
-      {name:"سموذي بطيخ",price:16,desc:"سموذي بطيخ.",tag:"Smoothie",badge:"Watermelon",img:"images/iced-tea.jpg"},
-      {name:"شاي مثلج خوخ",price:15,desc:"شاي مثلج خوخ.",tag:"Smoothie",badge:"Peach",img:"images/iced-tea.jpg"},
-      {name:"أيس ماتشا",price:14,desc:"آيس ماتشا.",tag:"Smoothie",badge:"Matcha",img:"images/iced-tea.jpg"}
+      {name:"موهيتو كلاسيك",price:12,tag:"Smoothie",badge:"Mint",img:"images/iced-latte.jpg"},
+      {name:"سموذي جوافه",price:16,tag:"Smoothie",badge:"Guava",img:"images/mojito.jpg"},
+      {name:"سموذي مانجو",price:16,tag:"Smoothie",badge:"Mango",img:"images/frappuccino.jpg"},
+      {name:"موهيتو -نكهه",price:14,tag:"Smoothie",badge:"Flavor",img:"images/iced-tea.jpg"},
+      {name:"سموذي برتقال",price:16,tag:"Smoothie",badge:"Orange",img:"images/iced-tea.jpg"},
+      {name:"سموذي اناناس",price:16,tag:"Smoothie",badge:"Pineapple",img:"images/iced-tea.jpg"},
+      {name:"سموذي فراوله",price:16,tag:"Smoothie",badge:"Strawberry",img:"images/iced-tea.jpg"},
+      {name:"سموذي بطيخ",price:16,tag:"Smoothie",badge:"Watermelon",img:"images/iced-tea.jpg"},
+      {name:"شاي مثلج خوخ",price:15,tag:"Smoothie",badge:"Peach",img:"images/iced-tea.jpg"},
+      {name:"أيس ماتشا",price:14,tag:"Smoothie",badge:"Matcha",img:"images/iced-tea.jpg"}
     ]
   },
   {
     id:"tea",
     name:"شاي",
     items:[
-      {name:"يانسون",price:6,desc:"يانسون دافئ.",tag:"Tea",badge:"Herbal",img:"images/iced-latte.jpg"},
-      {name:"قرفه",price:6,desc:"شاي قرفة.",tag:"Tea",badge:"Warm",img:"images/mojito.jpg"},
-            {name:"شاي بالزنجبيل",price:7,desc:"شاي مع الزنجبيل.",tag:"Tea",badge:"Classic",img:"images/شاي بالزنجبيل.png"},
-      {name:"زنجبيل",price:6,desc:"شاي زنجبيل.",tag:"Tea",badge:"Ginger",img:"images/frappuccino.jpg"},
-      {name:"زنجبيل -ليمون - عسل",price:6,desc:"زنجبيل مع ليمون وعسل.",tag:"Tea",badge:"Honey",img:"images/iced-tea.jpg"},
-      {name:"شاي مثلج",price:15,desc:"شاي مثلج منعش.",tag:"Tea",badge:"Iced",img:"images/iced-tea.jpg"},
-      {name:"ماتشا",price:15,desc:"ماتشا.",tag:"Tea",badge:"Matcha",img:"images/iced-tea.jpg"},
-      {name:"كوب شاي",price:5,desc:"كوب شاي.",tag:"Tea",badge:"Classic",img:"images/iced-tea.jpg"},
-      {name:"براد شاي",price:15,desc:"براد شاي.",tag:"Tea",badge:"Pot",img:"images/iced-tea.jpg"},
-      {name:"مياة",price:1,desc:"مياه.",tag:"Water",badge:"Basic",img:"images/iced-tea.jpg"},
-      {name:"أيس ماتشا",price:14,desc:"آيس ماتشا.",tag:"Tea",badge:"Iced",img:"images/iced-tea.jpg"},
-      {name:"شاي اخضر",price:6,desc:"شاي أخضر.",tag:"Tea",badge:"Green",img:"images/iced-tea.jpg"},
-      {name:"هوت شوكليت",price:13,desc:"هوت شوكليت.",tag:"Hot",badge:"Chocolate",img:"images/iced-tea.jpg"},
-      {name:"شاي بلبن",price:7,desc:"شاي بلبن.",tag:"Tea",badge:"Milk",img:"images/iced-tea.jpg"},
-      {name:"مستشفي",price:7,desc:"مشروب ساخن.",tag:"Hot",badge:"Warm",img:"images/iced-tea.jpg"},
-      {name:"سحلب",price:15,desc:"سحلب.",tag:"Hot",badge:"Creamy",img:"images/iced-tea.jpg"},
-      {name:"سحلب فواكه",price:18,desc:"سحلب فواكه.",tag:"Hot",badge:"Fruit",img:"images/iced-tea.jpg"}
+      {name:"يانسون",price:6,tag:"Tea",badge:"Herbal",img:"images/iced-latte.jpg"},
+      {name:"قرفه",price:6,tag:"Tea",badge:"Warm",img:"images/mojito.jpg"},
+      {name:"شاي بالزنجبيل",price:7,tag:"Tea",badge:"Classic",img:"images/شاي بالزنجبيل.png"},
+      {name:"زنجبيل",price:6,tag:"Tea",badge:"Ginger",img:"images/frappuccino.jpg"},
+      {name:"زنجبيل -ليمون - عسل",price:6,tag:"Tea",badge:"Honey",img:"images/iced-tea.jpg"},
+      {name:"شاي مثلج",price:15,tag:"Tea",badge:"Iced",img:"images/iced-tea.jpg"},
+      {name:"ماتشا",price:15,tag:"Tea",badge:"Matcha",img:"images/iced-tea.jpg"},
+      {name:"كوب شاي",price:5,tag:"Tea",badge:"Classic",img:"images/iced-tea.jpg"},
+      {name:"براد شاي",price:15,tag:"Tea",badge:"Pot",img:"images/iced-tea.jpg"},
+      {name:"مياة",price:1,tag:"Water",badge:"Basic",img:"images/iced-tea.jpg"},
+      {name:"أيس ماتشا",price:14,tag:"Tea",badge:"Iced",img:"images/iced-tea.jpg"},
+      {name:"شاي اخضر",price:6,tag:"Tea",badge:"Green",img:"images/iced-tea.jpg"},
+      {name:"هوت شوكليت",price:13,tag:"Hot",badge:"Chocolate",img:"images/iced-tea.jpg"},
+      {name:"شاي بلبن",price:7,tag:"Tea",badge:"Milk",img:"images/iced-tea.jpg"},
+      {name:"مستشفي",price:7,tag:"Hot",badge:"Warm",img:"images/iced-tea.jpg"},
+      {name:"سحلب",price:15,tag:"Hot",badge:"الأكثر طلبًا",img:"images/iced-tea.jpg"},
+      {name:"سحلب فواكه",price:18,tag:"Hot",badge:"Fruit",img:"images/iced-tea.jpg"}
     ]
   },
   {
     id:"desserts",
     name:"حلويات",
     items:[
-      {name:"وافل",price:17,desc:"وافل طازج بلمسة فاخرة.",tag:"Dessert",badge:"الأفضل مبيعاً",img:"images/cheesecake.jpg"},
-      {name:"وافل فايف اسلاش",price:20,desc:"وافل توقيع فايف سلاش.",tag:"Dessert",badge:"Signature",img:"images/cookies.jpg"},
-      {name:"كيكه عسل",price:15,desc:"كيكة عسل بقوام غني.",tag:"Dessert",badge:"Sweet",img:"images/macarons.jpg"},
-      {name:"روشية كيك",price:15,desc:"روشية كيك.",tag:"Dessert",badge:"Fresh",img:"images/macarons.jpg"},
-      {name:"كيك نوتيلا",price:15,desc:"كيك نوتيلا.",tag:"Dessert",badge:"Nutella",img:"images/macarons.jpg"},
-      {name:"سان سبستيان",price:15,desc:"سان سبستيان.",tag:"Dessert",badge:"Classic",img:"images/macarons.jpg"},
-      {name:"تشيز فروله",price:15,desc:"تشيز فراولة.",tag:"Dessert",badge:"Cheese",img:"images/macarons.jpg"},
-      {name:"تشيز بلو بيري",price:15,desc:"تشيز بلو بيري.",tag:"Dessert",badge:"Cheese",img:"images/macarons.jpg"},
-      {name:"مكسرات",price:14,desc:"حلويات مكسرات.",tag:"Dessert",badge:"Nuts",img:"images/macarons.jpg"},
-      {name:"طاوله",price:25,desc:"صنف خاص.",tag:"Dessert",badge:"Special",img:"images/macarons.jpg"},
-      {name:"كروسون",price:10,desc:"كروسون.",tag:"Dessert",badge:"Fresh",img:"images/macarons.jpg"},
-      {name:"كرسي",price:10,desc:"صنف.",tag:"Dessert",badge:"New",img:"images/macarons.jpg"}
+      {name:"وافل",price:17,tag:"Dessert",badge:"",img:"images/cheesecake.jpg"},
+      {name:"وافل فايف اسلاش",price:20,tag:"Dessert",badge:"Signature",img:"images/cookies.jpg"},
+      {name:"كيكه عسل",price:15,tag:"Dessert",badge:"الأكثر طلبًا",img:"images/macarons.jpg"},
+      {name:"روشية كيك",price:15,tag:"Dessert",badge:"Fresh",img:"images/macarons.jpg"},
+      {name:"كيك نوتيلا",price:15,tag:"Dessert",badge:"الأفضل مبيعاً",img:"images/macarons.jpg"},
+      {name:"سان سبستيان",price:15,tag:"Dessert",badge:"الأكثر طلبًا",img:"images/macarons.jpg"},
+      {name:"تشيز فروله",price:15,tag:"Dessert",badge:"Cheese",img:"images/macarons.jpg"},
+      {name:"تشيز بلو بيري",price:15,tag:"Dessert",badge:"Cheese",img:"images/macarons.jpg"},
+      {name:"مكسرات",price:14,tag:"Dessert",badge:"Nuts",img:"images/macarons.jpg"},
+      {name:"طاوله",price:25,tag:"Dessert",badge:"Special",img:"images/macarons.jpg"},
+      {name:"كروسون",price:10,tag:"Dessert",badge:"Fresh",img:"images/macarons.jpg"},
+      {name:"ترميسو",price:15,tag:"Dessert",badge:"Fresh",img:"images/macarons.jpg"},
+      {name:"كرسي",price:10,tag:"Dessert",badge:"New",img:"images/macarons.jpg"}
     ]
   }
 ];
@@ -1103,7 +1060,6 @@ const sortSel = document.getElementById("sort");
 const modal = document.getElementById("modal");
 const mTitle = document.getElementById("mTitle");
 const mImg = document.getElementById("mImg");
-const mDesc = document.getElementById("mDesc");
 const mPrice = document.getElementById("mPrice");
 const mTag = document.getElementById("mTag");
 const mBadge = document.getElementById("mBadge");
@@ -1116,7 +1072,7 @@ let active = "all";
 function norm(s){ return String(s || "").toLowerCase().trim(); }
 function matches(item, query){
   if(!query) return true;
-  const t = norm(item.name) + " " + norm(item.desc) + " " + norm(item.tag) + " " + norm(item.badge);
+  const t = norm(item.name) + " " + norm(item.tag) + " " + norm(item.badge);
   return t.includes(norm(query));
 }
 function safeImg(img){
@@ -1135,16 +1091,12 @@ function sectionIcon(id){
 }
 
 function buildChipsAndMobileSections(){
-  // Desktop chips
   chips.innerHTML = "";
-
-  // Mobile section cards
   sectionsGrid.innerHTML = "";
 
   const list = [{id:"all", name:"الكل"}].concat(MENU_DATA.map(s => ({id:s.id, name:s.name})));
 
   list.forEach((sec) => {
-    // counts (based on current search)
     let count = 0;
     if(sec.id === "all"){
       MENU_DATA.forEach(s => {
@@ -1155,7 +1107,6 @@ function buildChipsAndMobileSections(){
       count = (s?.items || []).filter(i => matches(i, q.value)).length;
     }
 
-    // ----- Chip (desktop)
     const b = document.createElement("button");
     b.type = "button";
     b.className = "chip" + (active === sec.id ? " active" : "");
@@ -1163,7 +1114,6 @@ function buildChipsAndMobileSections(){
     b.onclick = () => { active = sec.id; sync(); scrollToMenuTop(); };
     chips.appendChild(b);
 
-    // ----- Mobile section card
     const card = document.createElement("button");
     card.type = "button";
     card.className = "sec-card" + (active === sec.id ? " active" : "");
@@ -1178,7 +1128,6 @@ function buildChipsAndMobileSections(){
     sectionsGrid.appendChild(card);
   });
 
-  // section count label (mobile header)
   secCount.textContent = String(MENU_DATA.length);
 }
 
@@ -1249,7 +1198,6 @@ function render(){
       content.className = "content";
       content.innerHTML = `
         <div class="title">${i.name || ""}</div>
-        <div class="desc">${i.desc || "بدون وصف"}</div>
         <div class="meta">
           <div class="price">${Number(i.price||0)} <small>ر.س</small></div>
           <div class="badge" title="${i.badge || "تفاصيل"}">${i.badge || "تفاصيل"}</div>
@@ -1276,7 +1224,6 @@ function render(){
 
 function openModal(i, sectionName){
   mTitle.textContent = i.name || "";
-  mDesc.textContent  = i.desc || "بدون وصف";
   mPrice.textContent = `${Number(i.price || 0)} ر.س`;
   mTag.textContent   = sectionName ? `القسم: ${sectionName} • ${i.tag || ""}` : (i.tag || "");
   mBadge.textContent = i.badge || "تفاصيل";
@@ -1337,7 +1284,6 @@ function updateStats(){
 }
 
 function scrollToMenuTop(){
-  // نزّل المستخدم لبداية القائمة بشكل لطيف بعد اختيار قسم
   const hero = document.querySelector(".hero");
   const y = hero ? (hero.getBoundingClientRect().bottom + window.scrollY + 8) : 0;
   window.scrollTo({ top: y, behavior: "smooth" });
@@ -1349,11 +1295,9 @@ function sync(){
   updateStats();
 }
 
-/* WhatsApp: رابط مباشر (داخل المربع الأخضر) */
 const waBtn = document.getElementById("waBtn");
 waBtn.href = "https://wa.me/" + WHATSAPP_PHONE;
 
-/* Up button */
 document.getElementById("upBtn").onclick = () => {
   window.scrollTo({top:0, behavior:"smooth"});
 };
